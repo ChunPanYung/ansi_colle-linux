@@ -1,0 +1,14 @@
+---
+name: Test role in collection
+"on":
+  push:
+
+jobs:
+  build:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Ansible Molecule
+        uses: gofrolist/molecule-action@v2
