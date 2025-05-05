@@ -37,8 +37,3 @@
     - name: Install utilities
       ansible.builtin.dnf:
         name: lazygit
-
-    - name: Install frameworks and languages
-      ansible.builtin.dnf:
-        name:
-          - dotnet
