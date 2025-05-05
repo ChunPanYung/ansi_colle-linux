@@ -8,7 +8,7 @@
 - name: Install utilties for RedHat based OS
   become: true
   when: ansible_os_family == 'RedHat'
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: nodejs-npm
 
 - name: Create npm configuration file, do not change times to make it idempotent
@@ -52,4 +52,3 @@
   community.general.npm:
     name: bash-language-server
     global: true
-
