@@ -20,8 +20,6 @@
     name: "{{ item }}"
   loop:
     - git-cliff
-    - ruff-lsp
-    - black
+    - ruff
     - pytest
     - pre-commit
-    - pdm

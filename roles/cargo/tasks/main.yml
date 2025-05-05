@@ -1,9 +1,14 @@
 ---
-# tasks file for lang
+# tasks file for cargo
 - name: Install rust and package manager
   become: true
   ansible.builtin.package:
     name: cargo
+
+- name: Install git-cliff Rust package to global location
+  community.general.cargo:
+    name: git-cliff
+    state: latest
 
 - name: Setup rust environment variables
   ansible.builtin.blockinfile:
