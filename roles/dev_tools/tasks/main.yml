@@ -14,7 +14,14 @@
       - shellcheck
       - shfmt
 
-- name: Install web development packages
+- name: Install container tools
+  become: true
+  ansible.builtin.package:
+    name:
+      - buildah
+      - podman
+
+- name: Install Shell LSP
   community.general.npm:
     name: bash-language-server
     global: true
