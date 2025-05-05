@@ -42,12 +42,3 @@
       then
         PATH="$HOME/.npm-global/bin:$PATH"
       fi
-
-- name: Install web development packages
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-  loop:
-    - quick-lint-js
-    - typescript-language-server
-    - typescript
