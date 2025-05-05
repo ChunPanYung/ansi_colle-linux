@@ -1,10 +1,15 @@
 ---
-- name: Install nodejs and npm
+- name: Install npm for non RedHat based OS
   become: true
+  when: ansible_os_family != 'Redhat'
   ansible.builtin.package:
-    name:
-      - nodejs
-      - npm
+    name: npm
+
+- name: Install utilties for RedHat based OS
+  become: true
+  when: ansible_os_family == 'RedHat'
+  ansible.builtin.package:
+    name: nodejs-npm
 
 - name: Create npm configuration file, do not change times to make it idempotent
   ansible.builtin.file:
@@ -42,3 +47,9 @@
       then
         PATH="$HOME/.npm-global/bin:$PATH"
       fi
+
+- name: Install Shell LSP
+  community.general.npm:
+    name: bash-language-server
+    global: true
+
