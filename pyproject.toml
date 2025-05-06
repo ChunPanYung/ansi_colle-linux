@@ -1,17 +1,18 @@
 [project]
 name = "ansi_colle-linux"
-dynamic = ["version"]  # Check galaxy.yml for version
+dynamic = ["version"] # Check galaxy.yml for version
 description = "Default template for PDM package"
 authors = [
-    {name = "Chun Pan Yung", email = "31672021+ChunPanYung@users.noreply.github.com"},
+  { name = "Chun Pan Yung", email = "31672021+ChunPanYung@users.noreply.github.com" },
 ]
-dependencies = [
-    "ansible>=9.2.0",
-    "tomli-w>=1.0.0",
-]
+dependencies = ["ansible>=9.2.0", "tomli-w>=1.0.0"]
 requires-python = "==3.12.*"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
+
+[project.optional-dependencies]
+log = ["git-cliff", "uv"]
+test = ["go-task"]
 
 [tool.pdm]
 distribution = false
@@ -23,4 +24,3 @@ changelog = "git-cliff --prepend CHANGELOG.md --unreleased --tag"
 
 [tool.pdm.version]
 source = "scm"
-
