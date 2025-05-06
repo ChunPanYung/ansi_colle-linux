@@ -21,6 +21,7 @@
       - shellcheck
       - shfmt
       - ripgrep
+      - git
 
 - name: Install container tools
   become: true

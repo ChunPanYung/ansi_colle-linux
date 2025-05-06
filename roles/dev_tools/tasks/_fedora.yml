@@ -1,14 +1,4 @@
 ---
-- name: Execute installation with sudo
-  become: true
-  block:
-    - name: Install utilities
-      ansible.builtin.dnf:
-        name:
-          - tmux
-          - git
-          - git-lfs
-
 - name: Install packages from repository
   become: true
   block:
