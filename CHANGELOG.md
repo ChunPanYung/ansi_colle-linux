@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.3] - 2025-05-12
+
+### Documentation
+
+- Update project metadata.
+
+### Features
+
+- [**breaking**] Remove vscode installation and setup.
+- [**breaking**] Remove web dev linter.
+- [**breaking**] Remove dotnet and inventory config for ansible.
+- [**breaking**] Remove ruby install.
+- [**breaking**] Remove linting and lsp for ansible.
+- [**breaking**] Remove powershell.
+- [**breaking**] Delete golang.
+- [**breaking**] Remove python role.
+- [**breaking**] Remove unused directory.
+- [**breaking**] Remove pdm requirement.
+
+### Refactor
+
+- [**breaking**] Migrate task into dev_tools, remove unused tasks.
+- [**breaking**] Migrate neovim into its own role.
+- [**breaking**] Install npm only for redhat, alpine and debian os.
+- Install for alpine, debian and fedora os.
+- Use dnf module since it is for dnf based os.
+- [**breaking**] Migrate cargo to its own role.
+- [**breaking**] Migrate systemd config to its own role.
+- Only install git.
+
 ## [1.4.2] - 2024-10-04
 
 ### Features
