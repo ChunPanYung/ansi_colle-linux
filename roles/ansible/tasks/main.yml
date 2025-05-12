@@ -5,19 +5,6 @@
   ansible.builtin.package:
     name: ansible
 
-- name: Install ansible-language-server from npm
-  community.general.npm:
-    name: "@ansible/ansible-language-server"
-    global: true
-
-- name: Install ansible tools
-  community.general.pipx:
-    name: "{{ item }}"
-  loop:
-    - molecule
-    - ansible-lint
-    - yamllint
-
 - name: Setup ansible configuration
   community.general.ini_file:
     path: "{{ ansible_user_dir }}/.ansible.cfg"
@@ -28,5 +15,4 @@
   loop:
     - {key: 'stdout_callback', value: 'yaml'}
     - {key: 'bin_ansible_callbacks ', value: 'True'}
-    - {key: 'inventory', value: '~/.keys/hosts.cfg'}
     - {key: 'verbosity', value: '1'}

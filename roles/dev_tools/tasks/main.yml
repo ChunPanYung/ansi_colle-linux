@@ -1,23 +1,34 @@
 ---
 # linux -> dev_tools/tasks/
-- name: Install utilities
+- name: Install utilities for Debian and Fedora
   become: true
+  when: ansible_os_family != 'Alpine'
   ansible.builtin.package:
     name:
       - fd-find
-      - ripgrep
 
-- name: Install shell script tools
+- name: Install utilties for Alpine Linux
+  become: true
+  when: ansible_os_family == 'Alpine'
+  community.general.apk:
+    name:
+      - fd
+
+- name: Install utilities for all alpine, RedHat, and Debian distro
   become: true
   ansible.builtin.package:
     name:
       - shellcheck
       - shfmt
+      - ripgrep
+      - git
 
-- name: Install web development packages
-  community.general.npm:
-    name: bash-language-server
-    global: true
+- name: Install container tools
+  become: true
+  ansible.builtin.package:
+    name:
+      - buildah
+      - podman
 
 - name: Import tasks if it is RedHat based system
   ansible.builtin.import_tasks: _fedora.yml

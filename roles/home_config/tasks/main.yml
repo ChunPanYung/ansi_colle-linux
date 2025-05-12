@@ -24,26 +24,24 @@
 
 - name: Create directory for binary, exeuctables, and scripts
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ ansible_user_dir }}/.local/bin/"
     state: directory
     mode: '0755'
-  loop:
-    - "{{ ansible_user_dir }}/.local/bin/"
-    - "{{ ansible_user_dir }}/.local/opt/"
-    - "{{ ansible_user_dir }}/.local/script/"
-
-- name: Create directory for local systemd
-  ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.config/systemd/user/"
-    state: directory
-    mode: '0750'
 
 - name: Customize git configuration
   block:
-    - name: Default gitconfig file
-      ansible.builtin.blockinfile:
-        path: "{{ ansible_user_dir }}/.gitconfig"
-        block: "{{ lookup('ansible.builtin.file', 'gitconfig') }}"
+    - name: Create git directory
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.config/git/"
+        mode: '0755'
+        state: directory
+
+    - name: Add line to gitignore file
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_user_dir }}/.config/git/ignore"
+        line: ".directory"
+        create: true
+        mode: '0644'
 
     - name: Global gitignore file
       ansible.builtin.copy:

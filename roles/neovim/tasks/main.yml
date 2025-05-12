@@ -1,0 +1,29 @@
+---
+# tasks file for neovim
+- name: Install neovim
+  become: true
+  ansible.builtin.package:
+    name:
+      - neovim
+      - luarocks
+
+- name: Install pynvim
+  community.general.pipx:
+    name: pynvim
+
+- name: Install neovim packages
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+  loop:
+    - neovim
+    - tree-sitter-cli
+
+- name: Install Neovim and dependencies
+  become: true
+  when: ansible_os_family == 'RedHat'
+  ansible.builtin.dnf:
+    name:
+      - python3-neovim
+      - gcc-c++  # Required by nvim-treesitter
+      - lua
