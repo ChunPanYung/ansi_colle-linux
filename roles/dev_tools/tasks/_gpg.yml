@@ -14,13 +14,13 @@
 
 - name: Setup GPG_TTY variable
   ansible.builtin.lineinfile:
-    path: "{{ g_home_bashrc }}"
+    path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^export GPG_TTY='
     line: export GPG_TTY=$(tty)
 
 - name: Enable gpg-agent daemon on startup
   ansible.builtin.lineinfile:
-    path: "{{ g_home_profile }}"
+    path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^eval "\$\(gpg-agent'
     line: >
       eval "$(gpg-agent --daemon &> /dev/null)" #Eanble gpg-agent on startup
@@ -44,7 +44,7 @@
 
 - name: Setup gpg alias equivalent of 'ssh-add'
   ansible.builtin.lineinfile:
-    path: "{{ g_home_aliases }}"
+    path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^alias gpg-add='
     line: "alias gpg-add='echo | gpg -s > /dev/null'"
 
