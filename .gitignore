@@ -4,6 +4,7 @@ TODO.md
 # ansible
 .directory
 .plugin-cache.yaml
+.ansible
 
 hosts
 hosts.ini
