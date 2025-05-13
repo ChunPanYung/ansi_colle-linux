@@ -30,6 +30,7 @@
       - com.microsoft.Edge
       - com.yubico.yubioath
       - de.capypara.FieldMonitor
+      - io.podman_desktop.PodmanDesktop
 
 - name: Create flatpak data directory
   ansible.builtin.file:
