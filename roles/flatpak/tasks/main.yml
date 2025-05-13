@@ -28,20 +28,8 @@
       - com.github.tchx84.Flatseal
       - net.sourceforge.mcomix
       - com.microsoft.Edge
-      - com.jgraph.drawio.desktop
-
-- name: Install different firefox package
-  block:
-    - name: Remove native firefox package
-      become: true
-      ansible.builtin.package:
-        name: firefox
-        state: absent
-
-    - name: Install flatpak package
-      become: false
-      community.general.flatpak:
-        name: org.mozilla.firefox
+      - com.yubico.yubioath
+      - de.capypara.FieldMonitor
 
 - name: Create flatpak data directory
   ansible.builtin.file:
