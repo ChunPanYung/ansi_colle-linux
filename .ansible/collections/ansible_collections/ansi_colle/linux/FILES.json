@@ -162,17 +162,45 @@
    "format": 1
   },
   {
-   "name": "playbooks/linux.yml",
-   "ftype": "file",
-   "chksum_type": "sha256",
-   "chksum_sha256": "433edca240ef7eabe2b432ccc6cf4cebcf1e0b1b80517b32fbc7a27b4e893a4d",
+   "name": "playbooks/.ansible",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "playbooks/.ansible/roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "playbooks/.ansible/collections",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "playbooks/.ansible/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
    "format": 1
   },
   {
    "name": "playbooks/wsl.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "6693c08b638228a5168db6970e9a64dc75f5b820607ad1b54acb5a243b96013e",
+   "chksum_sha256": "b7284c36ab97e0a23a0dbd3103e8db4c060b52ad6ce201d8c25ee2d5a0b0bd01",
+   "format": 1
+  },
+  {
+   "name": "playbooks/linux.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0dcb6ec890f93557254fd1fe46138b65ac95f39a6cae57200484d863983af85c",
    "format": 1
   },
   {
@@ -228,7 +256,7 @@
    "name": "roles/ansible/meta/main.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "dc2601c26231c57e937359095e803fc14fd8ba09b37fe3f5c46bf008a36216f2",
+   "chksum_sha256": "652893adeed4e072d40570928b2f0d15d63a23c96c09b1e0fd5b748425dbb6d1",
    "format": 1
   },
   {
@@ -354,7 +382,7 @@
    "name": "roles/cargo/meta/main.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "0c91721fc85a599e5cd0a89010af55669aeb6dcbb9804801d4667482a979c6b1",
+   "chksum_sha256": "6a67e679fc361f89c655879d3d81b0d5a275301a3e54c5f0fd8472c607e6eaa1",
    "format": 1
   },
   {
@@ -369,6 +397,34 @@
    "ftype": "file",
    "chksum_type": "sha256",
    "chksum_sha256": "a14bc169c4ef784f32779c2460ced30bd59137beb31fa74ac9c5aa697591e9c9",
+   "format": 1
+  },
+  {
+   "name": "roles/cargo/tasks/.ansible",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/cargo/tasks/.ansible/roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/cargo/tasks/.ansible/collections",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/cargo/tasks/.ansible/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
    "format": 1
   },
   {
@@ -417,7 +473,7 @@
    "name": "roles/dev_tools/meta/main.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "f9ab3e8becaa11159793cf16a93afd5bb58941f8c6cdf1564e2c8ed2e3d27fb8",
+   "chksum_sha256": "42afa50db77911f0737f34c2c6779f3bf82bd5d7c8a3f50365188d04b062b51a",
    "format": 1
   },
   {
@@ -788,7 +844,7 @@
    "name": "roles/neovim/meta/main.yml",
    "ftype": "file",
    "chksum_type": "sha256",
-   "chksum_sha256": "0c91721fc85a599e5cd0a89010af55669aeb6dcbb9804801d4667482a979c6b1",
+   "chksum_sha256": "d98af1df05f702623d2794f3bd3a957aa29fc6bc532491bb08304c958831bf66",
    "format": 1
   },
   {
@@ -803,6 +859,34 @@
    "ftype": "file",
    "chksum_type": "sha256",
    "chksum_sha256": "213a88b55597e1615fe09758e4264b0f897d8b4ea85d83356cd20ece9fc0f69c",
+   "format": 1
+  },
+  {
+   "name": "roles/neovim/tasks/.ansible",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/neovim/tasks/.ansible/roles",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/neovim/tasks/.ansible/collections",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "roles/neovim/tasks/.ansible/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
    "format": 1
   },
   {
@@ -1100,10 +1184,10 @@
    "format": 1
   },
   {
-   "name": ".ansible/.lock",
-   "ftype": "file",
-   "chksum_type": "sha256",
-   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "name": ".ansible/collections/ansible_collections/ansi_colle",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
    "format": 1
   },
   {
@@ -1111,6 +1195,13 @@
    "ftype": "dir",
    "chksum_type": null,
    "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".ansible/.lock",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
    "format": 1
   }
  ],
