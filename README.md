@@ -1,43 +1,27 @@
-# ansi_colle
+ansi_colle
+==========
+
 Collection of roles and plugins for personal use.
 There is multiple ways to use this repo.
 
 This collections assume user configure/connect to remote Windows host using SSH.
 For more information how to setup, Execute/look at `Setup-SSH.ps1` in this directory.
 
-## Install via CLI
-To install the all collection from this repo:
-```
-ansible-galaxy collection install \
-    git+https://{{ repo link }}.git#/{{ collection }},{{ branch_name }}
-```
+Requirements
+------------
 
-## `Requirements.yml`
-Add the following into your `requirements.yml`:
-```
----
-collections:
-  - name: https://{{ repo link }}#/{{ collection_name }}
-    type: git
-    version: {{ branch name }}
-```
+[Installing Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
-You can then run: `ansible-galaxy install -r requirements.yml`
+To instal and run this playbook:
 
-## Playbook
-You can also install via playbook:
-```
----
-- name: Install collections
-  hosts: localhost  # Server that will run this playbook
-  tasks:
-    - name: Install one collection from repo
-      community.general.ansible_galaxy_install:
-        type: collection
-        name: git+{{ repo link }}.git#/{{ collection name }},{{ branch name }}
+```bash
+url="git+https://github.com/ChunPanYung/ansi_colle-linux.git"
+ansible-galaxy collection install "$url"
 
-    - name: Install all collections from repo
-      community.general.ansible_galaxy_install:
-        type: collection
-        name: git+{{ repo link }}.git,{{ branch name }}
+# Run this to update everytime
+ansible-playbook ansi_colle.linux.install
+
+# Run this after update, it will ask you sudo password
+ansible-playbook ansi_colle.linux.site --connection=local \
+  --inventory 127.0.0.1, --ask-become-pass
 ```
