@@ -1,0 +1,21 @@
+---
+# tasks file for cargo
+- name: Install rust and package manager
+  become: true
+  ansible.builtin.package:
+    name: cargo
+
+- name: Install git-cliff Rust package to global location
+  community.general.cargo:
+    name: git-cliff
+    state: latest
+
+- name: Setup rust environment variables
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    insertbefore: "export PATH"
+    marker: "# {mark} SETUP RUST PATH"
+    block: |
+      if ! [[ "$PATH" =~ $HOME/.cargo/bin: ]] ; then
+        PATH="$HOME/.cargo/bin:$PATH"
+      fi

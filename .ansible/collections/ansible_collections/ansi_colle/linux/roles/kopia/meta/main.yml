@@ -1,7 +1,8 @@
 ---
 galaxy_info:
   author: Chun Pan Yung
-  description: Install ansible development kits
+  description: Install kopia
+
   license: GPL-2.0-or-later
 
   min_ansible_version: "2.11"
@@ -13,5 +14,4 @@ galaxy_info:
 
   galaxy_tags: []
 
-dependencies:
-  - role: ansi_colle.linux.npm
+dependencies: []

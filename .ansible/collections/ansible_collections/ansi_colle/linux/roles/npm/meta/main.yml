@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Chun Pan Yung
-  description: Install ansible development kits
+  description: Install npm package
   license: GPL-2.0-or-later
 
   min_ansible_version: "2.11"
@@ -10,8 +10,9 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - all
 
   galaxy_tags: []
-
-dependencies:
-  - role: ansi_colle.linux.npm
+dependencies: []

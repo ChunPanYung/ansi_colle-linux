@@ -1,0 +1,33 @@
+{
+ "collection_info": {
+  "namespace": "ansi_colle",
+  "name": "linux",
+  "version": "1.4.2",
+  "authors": [
+   "Chun Pan Yung <31672021+ChunPanYung@users.noreply.github.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "linux",
+   "tools"
+  ],
+  "description": "your collection description",
+  "license": [
+   "GPL-2.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "http://example.com/repository",
+  "documentation": null,
+  "homepage": null,
+  "issues": null
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "50851eea8ec29e8796bdbe6877053490de5054d4a47b10e2000b847df192f27f",
+  "format": 1
+ },
+ "format": 1
+}
