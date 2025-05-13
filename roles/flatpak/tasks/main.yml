@@ -31,6 +31,7 @@
       - com.yubico.yubioath
       - de.capypara.FieldMonitor
       - io.podman_desktop.PodmanDesktop
+      - org.wezfurlong.wezterm
 
 - name: Create flatpak data directory
   ansible.builtin.file:
@@ -59,3 +60,20 @@
         value: home
         mode: '0644'
         no_extra_spaces: true
+
+- name: Configure wezterm
+  vars:
+    __wezterm_config_dir: "{{ ansible_user_dir }}/.var/app/org.wezfurlong.wezterm/config/wezterm/"
+  block:
+    - name: Create directory for wezterm
+      ansible.builtin.file:
+        name: "{{ __wezterm_config_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy file
+      ansible.builtin.copy:
+        src: wezterm.lua
+        dest: "{{ __wezterm_config_dir }}"
+        mode: '0644'
+        backup: true
