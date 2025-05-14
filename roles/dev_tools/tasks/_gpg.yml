@@ -7,10 +7,19 @@
     mode: '0700'
 
 - name: Create gpg config file
-  ansible.builtin.copy:
-    src: gpg-agent.conf
-    dest: "{{ ansible_user_dir }}/.gnupg/gpg-agent.conf"
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_user_dir }}/.gnupg/gpg-agent.conf"
+    append_newline: true
+    prepend_newline: true
+    create: true
+    backup: true
     mode: '0600'
+    block: |
+      # Setup default cache time and max cache time in seconds, 1 hour is 3600
+      default-cache-ttl 3600
+      default-cache-ttl-ssh 3600
+      max-cache-ttl 28800
+      max-cache-ttl-ssh 28800
 
 - name: Setup GPG_TTY variable
   ansible.builtin.lineinfile:
@@ -25,22 +34,23 @@
     line: >
       eval "$(gpg-agent --daemon &> /dev/null)" #Eanble gpg-agent on startup
 
-- name: Create gpg.conf if it does not exist
-  ansible.builtin.file:
+- name: Create gpg config file
+  ansible.builtin.blockinfile:
     path: "{{ ansible_user_dir }}/.gnupg/gpg.conf"
-    mode: '0644'
-    state: touch
-    modification_time: preserve
-    access_time: preserve
-
-- name: Short key id format for gpg
-  ansible.builtin.lineinfile:
-    path: "{{ ansible_user_dir }}/.gnupg/gpg.conf"
-    regexp: "{{ item.key }}"
-    line: "{{ item.value }}"
-  loop:
-    - {key: '^# Long hexidecimal key format', value: '# Short key format'}
-    - {key: '^keyid-format', value: 'keyid-format short'}
+    append_newline: true
+    prepend_newline: true
+    create: true
+    backup: true
+    mode: '0600'
+    block: |
+      # Short key format
+      keyid-format short
+      # Output ASCII instead of binary
+      armor
+      # Enable smartcard
+      use-agent
+      # Display all keys and their fingerprints
+      with-fingerprint
 
 - name: Setup gpg alias equivalent of 'ssh-add'
   ansible.builtin.lineinfile:
@@ -48,7 +58,7 @@
     regexp: '^alias gpg-add='
     line: "alias gpg-add='echo | gpg -s > /dev/null'"
 
-- name: Install pinentry
+- name: Install pinentry, for enter gpg passphrase on CLI
   become: true
   ansible.builtin.package:
     name: pinentry-tty
