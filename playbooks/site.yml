@@ -20,7 +20,5 @@
       tags: ansible
     - role: ansi_colle.linux.dev_tools
       tags: dev_tools
-    - role: ansi_colle.linux.kopia
-      tags: kopia
     - role: ansi_colle.linux.packages
       tags: packages
