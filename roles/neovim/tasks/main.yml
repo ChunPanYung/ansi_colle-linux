@@ -7,10 +7,6 @@
       - neovim
       - luarocks
 
-- name: Install pynvim
-  community.general.pipx:
-    name: pynvim
-
 - name: Install neovim packages
   community.general.npm:
     name: "{{ item }}"
