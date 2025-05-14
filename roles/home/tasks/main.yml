@@ -28,6 +28,16 @@
     state: directory
     mode: '0755'
 
+- name: Setup 'inputrc' dot file
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.inputrc"
+    line: "{{ item }}"
+    create: true
+    mode: '0644'
+  loop:
+    - '# Ctrl-Backspace: delete previous word'
+    - '"\C-H": shell-backward-kill-word'
+
 - name: Customize git configuration
   block:
     - name: Create git directory
@@ -66,7 +76,6 @@
       export EDITOR="/usr/bin/env nvim"
       export SYSTEMD_EDITOR="/usr/bin/env nvim"
 
-
 - name: Personalize bash
   ansible.builtin.blockinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
@@ -78,3 +87,4 @@
       compopt -o nospace ls
       # can't use it directly with compopt
       complete -o nospace -F _longopt source
+
