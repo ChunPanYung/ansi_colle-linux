@@ -59,6 +59,13 @@
         dest: "{{ ansible_user_dir }}/.gitignore"
         mode: '0644'
 
+    - name: Setup gitconfig
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_user_dir }}/.gitconfig"
+        append_newline: true
+        prepend_newline: true
+        block: "{{ lookup('ansible.builtin.file', 'gitconfig') }}"
+
 - name: Setup environment variable on profile on RedHat
   when: ansible_os_family == 'RedHat'
   ansible.builtin.blockinfile:
@@ -87,4 +94,3 @@
       compopt -o nospace ls
       # can't use it directly with compopt
       complete -o nospace -F _longopt source
-
