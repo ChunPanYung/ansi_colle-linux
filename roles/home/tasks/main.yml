@@ -28,6 +28,16 @@
     state: directory
     mode: '0755'
 
+- name: Setup 'inputrc' dot file
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.inputrc"
+    line: "{{ item }}"
+    create: true
+    mode: '0644'
+  loop:
+    - '# Ctrl-Backspace: delete previous word'
+    - '"\C-H": shell-backward-kill-word'
+
 - name: Customize git configuration
   block:
     - name: Create git directory
@@ -49,6 +59,13 @@
         dest: "{{ ansible_user_dir }}/.gitignore"
         mode: '0644'
 
+    - name: Setup gitconfig
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_user_dir }}/.gitconfig"
+        append_newline: true
+        prepend_newline: true
+        block: "{{ lookup('ansible.builtin.file', 'gitconfig') }}"
+
 - name: Setup environment variable on profile on RedHat
   when: ansible_os_family == 'RedHat'
   ansible.builtin.blockinfile:
@@ -65,7 +82,6 @@
       # Setup editor
       export EDITOR="/usr/bin/env nvim"
       export SYSTEMD_EDITOR="/usr/bin/env nvim"
-
 
 - name: Personalize bash
   ansible.builtin.blockinfile:
