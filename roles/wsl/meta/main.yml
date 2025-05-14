@@ -15,4 +15,4 @@ galaxy_info:
   galaxy_tags: []
 
 dependencies:
-  - ansi_colle.linux.dev_tools
+  - ansi_colle.linux.development

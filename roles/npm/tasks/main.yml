@@ -50,5 +50,8 @@
 
 - name: Install Shell LSP
   community.general.npm:
-    name: bash-language-server
+    name: "{{ item }}"
     global: true
+  loop:
+    - bash-language-server
+    - "@go-task/cli"
