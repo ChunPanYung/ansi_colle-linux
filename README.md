@@ -15,13 +15,16 @@ Requirements
 To instal and run this playbook:
 
 ```bash
-url="git+https://github.com/ChunPanYung/ansi_colle-linux.git"
-ansible-galaxy collection install "$url"
+export ANSIBLE_STDOUT_CALLBACK=yaml
+export ANSIBLE_LOAD_CALLBACK_PLUGINS=True
 
-# Run this to update everytime
+ansible-galaxy collection install \
+  git+https://github.com/ChunPanYung/ansi_colle-linux.git
+
+# Run this to update every time
 ansible-playbook ansi_colle.linux.install
 
 # Run this after update, it will ask you sudo password
 ansible-playbook ansi_colle.linux.site --connection=local \
-  --inventory 127.0.0.1, --ask-become-pass
+  --inventory 127.0.0.1, --ask-become-pass --verbose
 ```

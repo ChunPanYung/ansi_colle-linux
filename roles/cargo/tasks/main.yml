@@ -5,7 +5,7 @@
   ansible.builtin.package:
     name: cargo
 
-- name: Install git-cliff Rust package to global location
+- name: Install git-cliff Rust package
   community.general.cargo:
     name: git-cliff
     state: latest

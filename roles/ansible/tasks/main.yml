@@ -7,7 +7,7 @@
 
 - name: Setup ansible configuration
   community.general.ini_file:
-    path: "{{ ansible_user_dir }}/.ansible.cfg"
+    path: /etc/ansible/ansible.cfg
     section: defaults
     option: "{{ item.key }}"
     value: "{{ item.value }}"
