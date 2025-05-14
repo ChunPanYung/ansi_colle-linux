@@ -22,5 +22,5 @@
       tags: dev_tools
     - role: ansi_colle.linux.kopia
       tags: kopia
-    - role: ansi_colle.linux.sys_config
-      tags: sys_config
+    - role: ansi_colle.linux.packages
+      tags: packages
