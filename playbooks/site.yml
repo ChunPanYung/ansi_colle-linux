@@ -22,3 +22,7 @@
       tags: development
     - role: ansi_colle.linux.packages
       tags: packages
+    - role: ansi_colle.linux.cargo
+      tags: cargo
+    - role: ansi_colle.linux.golang
+      tags: golang
