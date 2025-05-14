@@ -1,6 +1,6 @@
 ---
 # tasks file for cargo
-- name: Install rust and package manager
+- name: Install cargo package manager
   become: true
   ansible.builtin.package:
     name: cargo
