@@ -13,8 +13,3 @@
     - name: Install utilities
       ansible.builtin.dnf:
         name: lazygit
-
-    - name: Install packages on Fedora
-      ansible.builtin.dnf:
-        name:
-          - alacritty
