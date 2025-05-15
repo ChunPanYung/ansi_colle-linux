@@ -17,3 +17,13 @@
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
+
+- name: Setup GO environment variables
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    insertbefore: "export PATH"
+    marker: "# {mark} SETUP GO PATH"
+    block: |
+      if ! [[ "$PATH" =~ $HOME/.go/bin: ]] ; then
+        PATH="$HOME/.go/bin:$PATH"
+      fi

@@ -1,18 +1,15 @@
-ansi_colle
+ansi_colle.linux
 ==========
 
 Collection of roles and plugins for personal use.
-There is multiple ways to use this repo.
-
-This collections assume user configure/connect to remote Windows host using SSH.
-For more information how to setup, Execute/look at `Setup-SSH.ps1` in this directory.
+Mainly for setting up Linux OS.
 
 Requirements
 ------------
 
 [Installing Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
-To instal and run this playbook:
+To run this playbook from `bash`:
 
 ```bash
 export ANSIBLE_STDOUT_CALLBACK=yaml

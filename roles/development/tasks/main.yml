@@ -37,3 +37,22 @@
 
 - name: Configure GnuPG
   ansible.builtin.import_tasks: _gpg.yml
+
+- name: Create and replace editorconfig file
+  ansible.builtin.copy:
+    src: editorconfig
+    dest: "{{ ansible_user_dir }}/.editorconfig"
+    mode: '0644'
+    backup: true
+
+- name: Install python uv on non-Debian
+  when: ansible_os_family != 'Debian'
+  become: true
+  ansible.builtin.package:
+    name: uv
+
+- name: Install python uv on Debian
+  when: ansible_os_family == 'Debian'
+  become: true
+  ansible.builtin.apt:
+    name: uv
