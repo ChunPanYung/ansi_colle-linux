@@ -44,3 +44,15 @@
     dest: "{{ ansible_user_dir }}/.editorconfig"
     mode: '0644'
     backup: true
+
+- name: Install python uv on non-Debian
+  when: ansible_os_family != 'Debian'
+  become: true
+  ansible.builtin.package:
+    name: uv
+
+- name: Install python uv on Debian
+  when: ansible_os_family == 'Debian'
+  become: true
+  ansible.builtin.apt:
+    name: uv
