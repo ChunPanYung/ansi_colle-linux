@@ -13,8 +13,5 @@ license = "MIT"
 
 [project.optional-dependencies]
 log = ["git-cliff", "uv"]
-test = ["go-task"]
-dev = ["ansible-dev-tools", "validate-pyproject", "go-task-bin", "pre-commit"]
-
-[tool.pdm.version]
-source = "scm"
+test = ["validate-pyproject", "pre-commit"]
+dev = ["ansible-dev-tools", "go-task-bin"]

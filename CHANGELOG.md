@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2025-05-15
+
+### Bug Fixes
+
+- Become true when config ansible. (#37)
+- Missing path appending.
+- Cmd name and variable.
+
+### Features
+
+- Install fish and setup wezterm. (#34)
+- Install python uv.
+- Install cargo only, no rustc.
+- Setup gpg configuration.
+- Install and configure wezterm.
+- Install golang.
+- Additional flatpak.
+- Setup editorconfig file.
+- [**breaking**] Remove unused roles and dependencies.
+- Use go-task.
+- Editorconfig file.
+- [**breaking**] No longer use pdm for this project.
+
+### Refactor
+
+- [**breaking**] Change role name.
+- [**breaking**] Refactor multiple roles into few.
+
+### Revert
+
+- Remove .ansible dir. (#33)
+
 ## [1.4.3] - 2025-05-12
 
 ### Documentation
