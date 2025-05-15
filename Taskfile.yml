@@ -27,12 +27,12 @@ tasks:
       - cmd: >-
           ansible-playbook ansi_colle.linux.site --ask-become-pass
           --inventory {{.INVENTORY}} --tags {{.TAGS}}
-  Install:
+  install:
     desc: |
       Install this collection and requirement.
       TAG -> Specify git branch or tag, default is main.
     vars:
-      TAG: '{{.TAG | default "--extra-vars git_branch=main"}}'
+      TAG: '{{.TAG | default "main"}}'
     cmds:
       - "ansible-galaxy collection install --upgrade community.general"
-      - "ansible-playbook ./playbooks/install.yml {{.TAG}}"
+      - "ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.TAG}}"
