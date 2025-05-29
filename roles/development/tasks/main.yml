@@ -30,6 +30,8 @@
     name:
       - buildah
       - podman
+  notify:
+    - Enable podman.socket on user scope
 
 - name: Import tasks if it is RedHat based system
   ansible.builtin.import_tasks: _fedora.yml

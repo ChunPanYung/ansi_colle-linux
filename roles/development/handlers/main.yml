@@ -1,0 +1,7 @@
+---
+- name: Enable podman.socket on user scope
+  ansible.builtin.systemd_service:
+    name: podman.socket
+    enabled: true
+    state: restarted
+    scope: user
