@@ -20,6 +20,9 @@
 
 - name: Setup GO environment variables
   ansible.builtin.blockinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.bashrc"
     insertbefore: "export PATH"
     marker: "# {mark} SETUP GO PATH"

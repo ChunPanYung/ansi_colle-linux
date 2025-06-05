@@ -30,9 +30,10 @@
 
 - name: Setup 'inputrc' dot file
   ansible.builtin.lineinfile:
+    create: true
+    backup: true
     path: "{{ ansible_user_dir }}/.inputrc"
     line: "{{ item }}"
-    create: true
     mode: '0644'
   loop:
     - '# Ctrl-Backspace: delete previous word'
@@ -51,6 +52,7 @@
         path: "{{ ansible_user_dir }}/.config/git/ignore"
         line: ".directory"
         create: true
+        backup: true
         mode: '0644'
 
     - name: Global gitignore file
@@ -61,6 +63,9 @@
 
     - name: Setup gitconfig
       ansible.builtin.blockinfile:
+        create: true
+        backup: true
+        mode: '0644'
         path: "{{ ansible_user_dir }}/.gitconfig"
         append_newline: true
         prepend_newline: true
@@ -69,6 +74,9 @@
 - name: Setup environment variable on profile on RedHat
   when: ansible_os_family == 'RedHat'
   ansible.builtin.blockinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.bash_profile"
     append_newline: true
     prepend_newline: true
@@ -85,6 +93,9 @@
 
 - name: Personalize bash
   ansible.builtin.blockinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.bashrc"
     append_newline: true
     prepend_newline: true
