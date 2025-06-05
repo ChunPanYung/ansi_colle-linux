@@ -35,6 +35,9 @@
 
 - name: Create DOCKER_HOST environment variable
   ansible.builtin.lineinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^export DOCKER_HOST='
     line: >
