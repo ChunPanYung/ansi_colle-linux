@@ -21,6 +21,9 @@
 
 - name: Setup global package directory for npm
   ansible.builtin.lineinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.npmrc"
     regexp: '^prefix='
     line: "prefix={{ ansible_user_dir }}/.npm-global"
@@ -28,6 +31,9 @@
 - name: Setup PATH for npm for Debian based OS
   when: ansible_os_family == 'Debian'
   ansible.builtin.blockinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.profile"
     insertbefore: "^export PATH"
     marker: "# {mark} SETUP NPM PATH"
@@ -39,6 +45,9 @@
 - name: Setup PATH for npm
   when: ansible_os_family == 'RedHat'
   ansible.builtin.blockinfile:
+    create: true
+    backup: true
+    mode: '0644'
     path: "{{ ansible_user_dir }}/.bashrc"
     insertbefore: "^export PATH"
     marker: "# {mark} SETUP NPM PATH"
