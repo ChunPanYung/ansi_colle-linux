@@ -41,7 +41,7 @@
     path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^export DOCKER_HOST='
     line: >
-      export DOCKER_HOST="$(podman info --format '{{ '{{' }}.Host.RemoteSocket.Path{{ '}}' }})"
+      export DOCKER_HOST="$(podman info --format '{{ '{{' }}.Host.RemoteSocket.Path{{ '}}' }}')"
 
 - name: Import tasks if it is RedHat based system
   ansible.builtin.import_tasks: _fedora.yml
