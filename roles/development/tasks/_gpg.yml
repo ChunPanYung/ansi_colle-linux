@@ -27,8 +27,8 @@
     backup: true
     mode: '0644'
     path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^export GPG_TTY='
-    line: export GPG_TTY=$(tty)
+    regexp: '^GPG_TTY='
+    line: GPG_TTY=$(tty) && export GPG_TTY
 
 - name: Enable gpg-agent daemon on startup
   ansible.builtin.lineinfile:
