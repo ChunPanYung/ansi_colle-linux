@@ -18,12 +18,18 @@
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: Install task
+- name: Setup pnpm global directory
   ansible.builtin.command:
-    # cmd: /usr/bin/env go install github.com/go-task/task/v3/cmd/task@latest
-    cmd: echo "hello"
+    cmd: pnpm setup
   register: __command
-  changed_when: __command.stdout is search("*downloading*")
+  changed_when: __command.stdout is search("Appended new lines*")
+
+# - name: Install task
+#   ansible.builtin.command:
+#     # cmd: /usr/bin/env go install github.com/go-task/task/v3/cmd/task@latest
+#     cmd: echo "hello"
+#   register: __command
+#   changed_when: __command.stdout is search("*downloading*")
 
 - name: Setup GO environment variables
   ansible.builtin.blockinfile:
