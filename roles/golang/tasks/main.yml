@@ -24,6 +24,14 @@
   register: __command
   changed_when: __command.stdout | length > 0
 
+- name: setup completion for task
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    line: 'eval "$(task --completion bash)"'
+    create: true
+    backup: true
+    mode: '0644'
+
 - name: Setup GO environment variables
   ansible.builtin.blockinfile:
     create: true
