@@ -1,54 +1,27 @@
 ---
-- name: Install npm for non RedHat based OS
+- name: Install pnpm for non Debian based OS
   become: true
-  when: ansible_os_family != 'Redhat'
+  when: ansible_os_family != 'Debian'
   ansible.builtin.package:
-    name: npm
+    name: pnpm
 
-- name: Install utilties for RedHat based OS
-  become: true
-  when: ansible_os_family == 'RedHat'
-  ansible.builtin.dnf:
-    name: nodejs-npm
-
-- name: Create npm configuration file, do not change times to make it idempotent
-  ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.npmrc"
-    mode: '0644'
-    state: touch
-    modification_time: preserve
-    access_time: preserve
-
-- name: Setup global package directory for npm
-  ansible.builtin.lineinfile:
-    path: "{{ ansible_user_dir }}/.npmrc"
-    regexp: '^prefix='
-    line: "prefix={{ ansible_user_dir }}/.npm-global"
-
-- name: Setup PATH for npm for Debian based OS
+- name: Install pnpm on Deiban
   when: ansible_os_family == 'Debian'
-  ansible.builtin.blockinfile:
-    path: "{{ ansible_user_dir }}/.profile"
-    insertbefore: "^export PATH"
-    marker: "# {mark} SETUP NPM PATH"
-    block: |
-      if [ -d "$HOME/.npm-global/bin" ] ; then
-          PATH="$HOME/.npm-global/bin:$PATH"
-      fi
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      wget -qO- https://get.pnpm.io/install.sh |
+      ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
+  register: __shell
+  changed_when: __shell.stdout is not search("*No changes to the environment*")
 
-- name: Setup PATH for npm
-  when: ansible_os_family == 'RedHat'
-  ansible.builtin.blockinfile:
-    path: "{{ ansible_user_dir }}/.bashrc"
-    insertbefore: "^export PATH"
-    marker: "# {mark} SETUP NPM PATH"
-    block: |
-      if ! [[ "$PATH" =~ $HOME/.npm-global/bin: ]]
-      then
-        PATH="$HOME/.npm-global/bin:$PATH"
-      fi
+- name: Setup pnpm global directory
+  ansible.builtin.command:
+    cmd: pnpm setup
+  register: __command
+  changed_when: __command.stdout is search("Appended new lines*")
 
 - name: Install Shell LSP
-  community.general.npm:
+  community.general.pnpm:
     name: bash-language-server
     global: true
