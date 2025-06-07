@@ -1,0 +1,71 @@
+---
+# linux -> dev_tools/tasks/
+- name: Install utilities for Debian and Fedora
+  become: true
+  when: ansible_os_family != 'Alpine'
+  ansible.builtin.package:
+    name:
+      - fd-find
+
+- name: Install utilties for Alpine Linux
+  become: true
+  when: ansible_os_family == 'Alpine'
+  community.general.apk:
+    name:
+      - fd
+
+- name: Install utilities for all alpine, RedHat, and Debian distro
+  become: true
+  ansible.builtin.package:
+    name:
+      - shellcheck
+      - shfmt
+      - ripgrep
+      - git
+      - fish
+
+- name: Install container tools
+  become: true
+  ansible.builtin.package:
+    name:
+      - buildah
+      - podman
+  notify:
+    - Enable podman.socket on user scope
+
+- name: Create DOCKER_HOST environment variable
+  ansible.builtin.lineinfile:
+    create: true
+    backup: true
+    mode: '0644'
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^DOCKER_HOST='
+    line: >
+      DOCKER_HOST="$(podman info --format '{{ '{{' }}.Host.RemoteSocket.Path{{ '}}' }}')"
+      && export DOCKER_HOST
+
+- name: Import tasks if it is RedHat based system
+  ansible.builtin.import_tasks: _fedora.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Configure GnuPG
+  ansible.builtin.import_tasks: _gpg.yml
+
+- name: Create and replace editorconfig file
+  ansible.builtin.copy:
+    src: editorconfig
+    dest: "{{ ansible_user_dir }}/.editorconfig"
+    mode: '0644'
+    backup: true
+
+- name: Install python uv on non-Debian
+  when: ansible_os_family != 'Debian'
+  become: true
+  ansible.builtin.package:
+    name: uv
+
+- name: Install python uv on Debian
+  when: ansible_os_family == 'Debian'
+  become: true
+  ansible.builtin.apt:
+    name: uv

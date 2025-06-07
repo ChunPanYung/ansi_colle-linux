@@ -1,10 +1,11 @@
+# SPDX-License-Identifier: MIT-0
+---
 galaxy_info:
   author: Chun Pan Yung
-  description: Install neovim
-
+  description: Install go programming language
   license: MIT
 
-  min_ansible_version: "2.16"
+  min_ansible_version: "2.17"
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
@@ -19,4 +20,6 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - ansi_colle.linux.npm
+  []
+  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+  # if you add dependencies to this list.

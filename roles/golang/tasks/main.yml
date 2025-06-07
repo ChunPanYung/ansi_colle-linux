@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: MIT-0
+---
+# tasks file for golang
+- name: Install Go programming language
+  become: true
+  when: ansible_os_family != 'Alpine'
+  ansible.builtin.package:
+    name: golang
+  notify: Change GOPATH
+
+- name: Install Go programming language for Alpine
+  become: true
+  when: ansible_os_family == 'Alpine'
+  community.general.apk:
+    name: golang
+  notify: Change GOPATH
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Setup GO environment variables
+  ansible.builtin.blockinfile:
+    create: true
+    backup: true
+    mode: '0644'
+    path: "{{ ansible_user_dir }}/.bashrc"
+    insertbefore: "export PATH"
+    marker: "# {mark} SETUP GO PATH"
+    block: |
+      if ! [[ "$PATH" =~ $HOME/.go/bin: ]] ; then
+        PATH="$HOME/.go/bin:$PATH"
+      fi

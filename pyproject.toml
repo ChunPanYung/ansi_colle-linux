@@ -1,6 +1,6 @@
 [project]
 name = "ansi_colle-linux"
-dynamic = ["version"] # Check galaxy.yml for version
+dynamic = ["version"]        # Check galaxy.yml for version
 requires-python = "==3.12.*"
 
 description = "Default template for PDM package"
@@ -13,13 +13,5 @@ license = "MIT"
 
 [project.optional-dependencies]
 log = ["git-cliff", "uv"]
-test = ["go-task"]
-dev = ["ansible-dev-tools", "validate-pyproject"]
-
-[tool.pdm.scripts]
-install = "ansible-playbook ansi_colle.linux.install"
-exec = "ansible-playbook ansi_colle.linux.linux --ask-become-pass --inventory"
-changelog = "git-cliff --prepend CHANGELOG.md --unreleased --tag"
-
-[tool.pdm.version]
-source = "scm"
+test = ["validate-pyproject", "pre-commit"]
+dev = ["ansible-dev-tools", "go-task-bin"]
