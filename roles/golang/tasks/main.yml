@@ -12,7 +12,7 @@
   become: true
   when: ansible_os_family == 'Alpine'
   community.general.apk:
-    name: golang
+    name: go
   notify: Change GOPATH
 
 - name: Flush handlers
@@ -30,3 +30,9 @@
       if ! [[ "$PATH" =~ $HOME/.go/bin: ]] ; then
         PATH="$HOME/.go/bin:$PATH"
       fi
+
+- name: Install task
+  ansible.builtin.command:
+    cmd: go install github.com/go-task/task/v3/cmd/task@latest
+  register: __command
+  changed_when: __command.stdout is search("*downloading*")
