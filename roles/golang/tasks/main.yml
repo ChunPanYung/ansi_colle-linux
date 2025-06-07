@@ -18,6 +18,13 @@
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
+- name: Install task
+  ansible.builtin.command:
+    # cmd: /usr/bin/env go install github.com/go-task/task/v3/cmd/task@latest
+    cmd: echo "hello"
+  register: __command
+  changed_when: __command.stdout is search("*downloading*")
+
 - name: Setup GO environment variables
   ansible.builtin.blockinfile:
     create: true
@@ -30,9 +37,3 @@
       if ! [[ "$PATH" =~ $HOME/.go/bin: ]] ; then
         PATH="$HOME/.go/bin:$PATH"
       fi
-
-- name: Install task
-  ansible.builtin.command:
-    cmd: go install github.com/go-task/task/v3/cmd/task@latest
-  register: __command
-  changed_when: __command.stdout is search("*downloading*")
