@@ -22,14 +22,8 @@
   ansible.builtin.command:
     cmd: go install github.com/go-task/task/v3/cmd/task@latest
   register: __command
-  changed_when: __command.stdout is search("Appended new lines*")
-  # changed_when: __command.stdout is search("*downloading*")
-
-# - name: Install task
-#   ansible.builtin.command:
-#     cmd: echo "hello"
-#   register: __command
-#   changed_when: __command.stdout is search("*downloading*")
+  # changed_when: __command.stdout is search("Appended new lines*")
+  changed_when: __command.stdout is search("go*")
 
 - name: Setup GO environment variables
   ansible.builtin.blockinfile:
