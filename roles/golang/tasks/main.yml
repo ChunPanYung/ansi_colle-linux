@@ -12,11 +12,25 @@
   become: true
   when: ansible_os_family == 'Alpine'
   community.general.apk:
-    name: golang
+    name: go
   notify: Change GOPATH
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
+
+- name: Install task
+  ansible.builtin.command:
+    cmd: go install github.com/go-task/task/v3/cmd/task@latest
+  register: __command
+  changed_when: __command.stdout | length > 0
+
+- name: Setup completion for task
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    line: 'eval "$(task --completion bash)"'
+    create: true
+    backup: true
+    mode: '0644'
 
 - name: Setup GO environment variables
   ansible.builtin.blockinfile:

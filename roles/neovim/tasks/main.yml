@@ -8,7 +8,7 @@
       - luarocks
 
 - name: Install neovim packages
-  community.general.npm:
+  community.general.pnpm:
     name: "{{ item }}"
     global: true
   loop:

@@ -1,0 +1,34 @@
+---
+- name: Install pnpm for non Debian based OS
+  become: true
+  when: ansible_os_family != 'Debian'
+  ansible.builtin.package:
+    name: pnpm
+
+- name: Install pnpm on Deiban
+  when: ansible_os_family == 'Debian'
+  block:
+    - name: Install npm, dependencies for pnpm
+      become: true
+      ansible.builtin.apt:
+        name: npm
+
+    - name: Install pnpm via wget and configure bash
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          wget -qO- https://get.pnpm.io/install.sh |
+          ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
+      register: __shell
+      changed_when: __shell.stdout is not search("*No changes to the environment*")
+
+- name: Setup pnpm global directory
+  ansible.builtin.command:
+    cmd: pnpm setup
+  register: __command
+  changed_when: __command.stdout is search("Appended new lines*")
+
+- name: Install Shell LSP
+  community.general.pnpm:
+    name: bash-language-server
+    global: true

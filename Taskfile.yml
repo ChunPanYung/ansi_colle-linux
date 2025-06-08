@@ -30,9 +30,9 @@ tasks:
   install:
     desc: |
       Install this collection and requirement.
-      TAG -> Specify git branch or tag, default is main.
+      BRANCH -> Specify git branch or tag, default is main.
     vars:
-      TAG: '{{.TAG | default "main"}}'
+      BRANCH: '{{.BRANCH | default "main"}}'
     cmds:
       - "ansible-galaxy collection install --upgrade community.general"
-      - "ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.TAG}}"
+      - "ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.BRANCH}}"

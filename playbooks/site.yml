@@ -8,8 +8,8 @@
   roles:
     - role: ansi_colle.slim_os.fedora
       tags: fedora
-    - role: ansi_colle.linux.npm
-      tags: npm
+    - role: ansi_colle.linux.pnpm
+      tags: pnpm
     - role: ansi_colle.linux.home
       tags: home
     - role: ansi_colle.linux.flatpak
@@ -26,3 +26,7 @@
       tags: cargo
     - role: ansi_colle.linux.golang
       tags: golang
+    - role: ansi_colle.linux.fish
+      tags: fish
+    - role: ansi_colle.linux.neovim
+      tags: neovim
