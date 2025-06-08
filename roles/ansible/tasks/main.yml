@@ -14,6 +14,5 @@
     value: "{{ item.value }}"
     mode: '0644'
   loop:
-    - {key: 'stdout_callback', value: 'yaml'}
-    - {key: 'bin_ansible_callbacks ', value: 'True'}
+    - {key: 'callback_result_format', value: 'yaml'}
     - {key: 'verbosity', value: '1'}
