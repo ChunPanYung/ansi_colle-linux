@@ -1,0 +1,7 @@
+---
+# argument spec file for ansi_colle.linux.ansi_colle.fish
+
+argument_specs:
+  main:
+    short_description: Install fish shell.
+    options: {}

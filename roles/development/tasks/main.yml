@@ -22,7 +22,6 @@
       - shfmt
       - ripgrep
       - git
-      - fish
 
 - name: Install container tools
   become: true
