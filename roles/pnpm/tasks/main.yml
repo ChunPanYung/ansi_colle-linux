@@ -33,5 +33,5 @@
   #   PNPM_HOME: "{{ ansible_user_dir }}/.local/share/pnpm"
   community.general.pnpm:
     name: bash-language-server
-    path: "{{ ansible_user_dir }}/.local/share/pnpm"
+    # path: "{{ ansible_user_dir }}/.local/share/pnpm"
     global: true
