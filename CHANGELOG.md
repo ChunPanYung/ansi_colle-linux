@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2025-06-08
+
+### 🚀 Features
+
+- Setup wezterm.
+- Create new role `fish`.
+- Setup podman socket systemd. (#40)
+- *(pr)* Create file if not exist, setup file permission and backup copy for `lineinfile` module.
+- Setup `DOCKER_HOST` var.
+- [**breaking**] Fix pkg name and install go-task.
+- Setup completion for task.
+- [**breaking**] Rename role, from `npm` to `pnpm`.
+- Update key and value in `ansible.cfg`.
+
+### 🐛 Bug Fixes
+
+- Add `neovim` role to playbook.
+
+### 🚜 Refactor
+
+- Reduce `pnpm` role code complexity.
+
+### 📚 Documentation
+
+- Change yaml file name and update documentation.
+- Create issue template. (#39)
+
+### 🎨 Styling
+
+- *(pr)* Change format according to linter. (#42)
+- Change variable name.
+
+### 🧪 Testing
+
+- Change variable name in `task` command.
+
 ## [2.0.0] - 2025-05-15
 
 ### Bug Fixes
