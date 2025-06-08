@@ -8,8 +8,8 @@
   roles:
     - role: ansi_colle.slim_os.fedora
       tags: fedora
-    - role: ansi_colle.linux.npm
-      tags: npm
+    - role: ansi_colle.linux.pnpm
+      tags: pnpm
     - role: ansi_colle.linux.home
       tags: home
     - role: ansi_colle.linux.flatpak
