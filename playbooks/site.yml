@@ -26,3 +26,5 @@
       tags: cargo
     - role: ansi_colle.linux.golang
       tags: golang
+    - role: ansi_colle.linux.fish
+      tags: fish
