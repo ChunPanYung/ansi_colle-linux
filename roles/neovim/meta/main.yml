@@ -19,4 +19,4 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - ansi_colle.linux.npm
+  - ansi_colle.linux.pnpm
