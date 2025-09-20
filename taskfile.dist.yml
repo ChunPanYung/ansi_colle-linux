@@ -45,6 +45,7 @@ tasks:
   build:local:
     desc: Locally install current working branch, then execute this branch
     cmds:
+      - ansible-galaxy collection install --upgrade --requirements-file {{.ROOT_DIR}}/requirements.yml
       - ansible-galaxy collection install --force {{.ROOT_DIR}}
 
   run:local:*:
