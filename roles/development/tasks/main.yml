@@ -5,6 +5,7 @@
   ansible.builtin.package:
     name:
       - fd-find
+      - fish
 
 - name: Install utilities for all alpine, RedHat, and Debian distro
   become: true
