@@ -20,11 +20,10 @@ tasks:
           sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/' {{.ROOT_DIR}}/galaxy.yml
       - "git-cliff --prepend CHANGELOG.md --unreleased --tag {{.TAG}}"
 
-  playbook:*:*:
+  playbook:*:
     desc: |
-      Run this plabyook:
+      Run this plabyook locally.
       Param_1 -> Select only role with specific tag, you can view them from site.yml file.
-      Param_2 -> inventory file content, default is localhost.
     vars:
       TAGS: '{{index .MATCH 0 | default "all"}}'
       INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
