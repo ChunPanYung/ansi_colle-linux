@@ -42,17 +42,17 @@ tasks:
       - "ansible-galaxy collection install --upgrade community.general"
       - "ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.BRANCH}}"
 
-  local:build:
+  build:local:
     desc: Locally install current working branch, then execute this branch
     cmds:
       - ansible-galaxy collection install --force {{.ROOT_DIR}}
 
-  local:run:*:
+  run:local:*:
     desc: Build and run working branch, then execute this branch with tags specified.
     vars:
       TAGS: '{{index .MATCH 0 | default "all"}}'
     cmds:
-      - task: local:build
+      - task: build:local
       - task: playbook:{{.TAGS}}
 
   build:docs:
@@ -62,7 +62,7 @@ tasks:
       DIST_DOCS: "{{.ROOT_DIR}}/dist/docs"
       COLLECTION_NAME: ansi_colle.linux
     cmds:
-      - task: local:build
+      - task: build:local
       - mkdir --parent {{.DIST_DOCS}}
       - antsibull-docs sphinx-init --use-current --squash-hierarchy --dest-dir {{.DIST_DOCS}} {{.COLLECTION_NAME}}
       - pip install --requirement {{.ROOT_DIR}}/dist/docs/requirements.txt
