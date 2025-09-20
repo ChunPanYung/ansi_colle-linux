@@ -6,6 +6,7 @@
     name:
       - neovim
       - luarocks
+      - fd-find
 
 - name: Install neovim packages from npm
   community.general.pnpm:
@@ -29,10 +30,3 @@
     name:
       - python3-neovim
       - gcc-c++  # Required by nvim-treesitter
-
-- name: Install Lazyvim dependencies on Debian Based OS
-  become: true
-  when: ansible_os_family == 'Debian'
-  ansible.builtin.dnf:
-    name:
-      - fd-find
