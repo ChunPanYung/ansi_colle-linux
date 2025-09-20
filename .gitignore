@@ -1,4 +1,5 @@
 .keys/
+*.bak
 TODO.md
 
 # ansible
@@ -22,6 +23,7 @@ poetry.lock
 pdm.lock
 dist/
 build/
+.python-version
 
 # pytest
 /conftest.py
