@@ -51,12 +51,13 @@ tasks:
       - task: playbook:{{.TAGS}}
 
   build:docs:
-    desc: Create documentation using `antsibull-docs`.
+    desc: Install current repo locally and create documentation using `antsibull-docs`.
     dir: "{{.ROOT_DIR}}"
     vars:
       DIST_DOCS: "{{.ROOT_DIR}}/dist/docs"
       COLLECTION_NAME: ansi_colle.linux
     cmds:
+      - task: local:build
       - mkdir --parent {{.DIST_DOCS}}
       - antsibull-docs sphinx-init --use-current --squash-hierarchy --dest-dir {{.DIST_DOCS}} {{.COLLECTION_NAME}}
       - pip install --requirement {{.ROOT_DIR}}/dist/docs/requirements.txt
