@@ -24,6 +24,7 @@ pdm.lock
 dist/
 build/
 .python-version
+uv.lock
 
 # pytest
 /conftest.py

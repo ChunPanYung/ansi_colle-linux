@@ -13,5 +13,6 @@ dev = [
   "ansible-dev-tools>=25.8.3",
   "git-cliff>=2.10.0",
   "go-task-bin>=3.45.4",
+  "pre-commit>=4.3.0",
   "ruff>=0.13.1",
 ]
