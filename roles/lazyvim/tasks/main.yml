@@ -1,0 +1,38 @@
+---
+# tasks file for lazyvim
+- name: Install neovim & dependencies
+  become: true
+  ansible.builtin.package:
+    name:
+      - neovim
+      - luarocks
+
+- name: Install neovim packages from npm
+  community.general.pnpm:
+    name: "{{ item }}"
+    global: true
+  loop:
+    - neovim
+    - tree-sitter-cli
+
+- name: Install Lazyvim dependencies
+  become: true
+  ansible.builtin.package:
+    name:
+      - fzf
+      - luarocks
+
+- name: Install Lazyvim dependencies on RedHat Based OS
+  become: true
+  when: ansible_os_family == 'RedHat'
+  ansible.builtin.dnf:
+    name:
+      - python3-neovim
+      - gcc-c++  # Required by nvim-treesitter
+
+- name: Install Lazyvim dependencies on Debian Based OS
+  become: true
+  when: ansible_os_family == 'Debian'
+  ansible.builtin.dnf:
+    name:
+      - fd-find
