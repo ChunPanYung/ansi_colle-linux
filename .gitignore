@@ -20,6 +20,12 @@ __pycache__
 .pdm-python
 poetry.lock
 pdm.lock
+dist/
+build/
 
 # pytest
 /conftest.py
+
+# Taskfile
+.task/
+[Tt]askfile.y*ml
