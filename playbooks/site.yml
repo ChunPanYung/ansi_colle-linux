@@ -6,8 +6,6 @@
   #     prompt: "BECOME password"
 
   roles:
-    - role: ansi_colle.slim_os.fedora
-      tags: fedora
     - role: ansi_colle.linux.pnpm
       tags: pnpm
     - role: ansi_colle.linux.home
