@@ -6,8 +6,6 @@
   #     prompt: "BECOME password"
 
   roles:
-    - role: ansi_colle.slim_os.fedora
-      tags: fedora
     - role: ansi_colle.linux.pnpm
       tags: pnpm
     - role: ansi_colle.linux.home
@@ -28,5 +26,5 @@
       tags: golang
     - role: ansi_colle.linux.fish
       tags: fish
-    - role: ansi_colle.linux.neovim
-      tags: neovim
+    - role: ansi_colle.linux.lazyvim
+      tags: lazyvim
