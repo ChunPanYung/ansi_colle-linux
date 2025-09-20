@@ -1,0 +1,11 @@
+---
+- name: Install packages for debian
+  become: true
+  ansible.builtin.apt:
+    name:
+      - pipx
+
+- name: Install uv package and project manager
+  community.general.pipx:
+    name: uv
+    state: latest
