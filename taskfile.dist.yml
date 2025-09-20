@@ -15,14 +15,14 @@ tasks:
     cmds:
       - "git-cliff --prepend CHANGELOG.md --unreleased --tag {{.TAG}}"
 
-  playbook:
+  playbook:*:
     desc: |
       Run this plabyook:
       INVENTORY -> inventory file path, default is localhost.
       TAGS -> Select only role with specific tag, you can view them from site.yml file.
     vars:
       INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
-      TAGS: '{{.TAGS | default "all"}}'
+      TAGS: '{{index .MATCH 0 | default "all"}}'
     cmds:
       - cmd: >-
           ansible-playbook ansi_colle.linux.site --ask-become-pass
@@ -36,3 +36,16 @@ tasks:
     cmds:
       - "ansible-galaxy collection install --upgrade community.general"
       - "ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.BRANCH}}"
+
+  local:build:
+    desc: Locally install current working branch, then execute this branch
+    cmds:
+      - ansible-galaxy collection install --force {{.ROOT_DIR}}
+
+  local:run:*:
+    desc: Build and run working branch, then execute this branch with tags specified.
+    vars:
+      TAGS: '{{index .MATCH 0 | default "all"}}'
+    cmds:
+      - task: local:build
+      - task: playbook:{{.TAGS}}
