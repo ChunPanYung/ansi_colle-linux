@@ -10,9 +10,14 @@ tasks:
     desc: |
       Create or append to CHANGELOG.md, need tag version.
       TAG -> Create a git tag, ex: v1.0.1.
+      It will also update versioning file.
     vars:
       TAG: "{{index .MATCH 0}}"
+      REPLACE_CMD: sed --in-place --regexp-extended
     cmds:
+      - sed --in-place --regexp-extended 's/^version\s?=.*/version = "{{.TAG}}"/' {{.ROOT_DIR}}/pyproject.toml
+      - cmd: >-
+          sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/' {{.ROOT_DIR}}/galaxy.yml
       - "git-cliff --prepend CHANGELOG.md --unreleased --tag {{.TAG}}"
 
   playbook:*:
