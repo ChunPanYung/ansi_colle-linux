@@ -1,0 +1,11 @@
+---
+argument_specs:
+  # entry point
+  main:
+    short_description: Main entry point for the lazyvim role
+    description:
+      - Main entry point for the lazyvim role.
+      - Configure Lazyvim by install neovim and dependencies.
+    author:
+      - Chun Pan Yung
+    options: {}
