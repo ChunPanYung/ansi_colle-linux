@@ -20,18 +20,6 @@ tasks:
           sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/' {{.ROOT_DIR}}/galaxy.yml
       - "git-cliff --prepend CHANGELOG.md --unreleased --tag {{.TAG}}"
 
-  playbook:*:
-    desc: |
-      Run this plabyook locally.
-      Param_1 -> Select only role with specific tag, you can view them from site.yml file.
-    vars:
-      TAGS: '{{index .MATCH 0 | default "all"}}'
-      INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
-    cmds:
-      - cmd: >-
-          ansible-playbook ansi_colle.linux.site --ask-become-pass
-          --inventory {{.INVENTORY}} --tags {{.TAGS}}
-
   install:*:
     desc: |
       Install this collection and requirement.
@@ -50,12 +38,15 @@ tasks:
       - ansible-galaxy collection install --force {{.ROOT_DIR}}
 
   run:local:*:
-    desc: Build and run working branch, then execute this branch with tags specified.
+    desc: Build and run working directory, then execute this branch with tags specified.
     vars:
       TAGS: '{{index .MATCH 0 | default "all"}}'
+      INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
     cmds:
       - task: install:local
-      - task: playbook:{{.TAGS}}
+      - cmd: >-
+          ansible-playbook ansi_colle.linux.site --ask-become-pass
+          --inventory {{.INVENTORY}} --tags {{.TAGS}}
 
   build:docs:
     desc: Install current repo locally and create documentation using `antsibull-docs`.
