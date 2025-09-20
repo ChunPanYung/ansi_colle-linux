@@ -21,8 +21,8 @@
 - name: Install task
   ansible.builtin.command:
     cmd: go install github.com/go-task/task/v3/cmd/task@latest
-  register: __command
-  changed_when: __command.stdout | length > 0
+  register: golang_cmd
+  changed_when: golang_cmd.stdout | length > 0
 
 - name: Setup completion for task
   ansible.builtin.lineinfile:

@@ -19,8 +19,8 @@
           set -o pipefail
           wget -qO- https://get.pnpm.io/install.sh |
           ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
-      register: __shell
-      changed_when: __shell.stdout is not search("*No changes to the environment*")
+      register: pnpm_shell
+      changed_when: pnpm_shell.stdout is not search("*No changes to the environment*")
 
 - name: Setup .npmrc on user directory
   community.general.ini_file:
@@ -34,11 +34,11 @@
 - name: Setup pnpm global directory
   ansible.builtin.command:
     cmd: pnpm setup
-  register: __command
-  changed_when: __command.stdout is search("Appended new lines")
+  register: pnpm_cmd
+  changed_when: pnpm_cmd.stdout is search("Appended new lines")
   failed_when:
-    - __command.rc != 0
-    - __command.stdout is not search("already contains a pnpm section")
+    - pnpm_cmd.rc != 0
+    - pnpm_cmd.stdout is not search("already contains a pnpm section")
 
 - name: Install Shell LSP via pnpm
   community.general.pnpm:
