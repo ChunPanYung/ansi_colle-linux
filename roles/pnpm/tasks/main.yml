@@ -20,11 +20,12 @@
           wget -qO- https://get.pnpm.io/install.sh |
           ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
       register: pnpm_shell
-      changed_when: pnpm_shell.stdout is not search("*No changes to the environment*")
+      changed_when: pnpm_shell.stdout is not search("No changes to the environment")
 
 - name: Setup .npmrc on user directory
   community.general.ini_file:
     path: "{{ ansible_user_dir }}/.npmrc"
+    create: true
     option: prefix
     value: "{{ ansible_user_dir }}/.local"
     no_extra_spaces: true

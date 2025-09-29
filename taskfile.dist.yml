@@ -8,17 +8,20 @@ vars:
 tasks:
   changelog:*:
     desc: |
-      Create or append to CHANGELOG.md, need tag version.
-      TAG -> Create a git tag, ex: v1.0.1.
+      Create or append to CHANGELOG.md, and tag current commit.
+      TAG -> ex: '1.0.1' will create 'v1.0.1'.
       It will also update versioning file.
     vars:
       TAG: "{{index .MATCH 0}}"
       REPLACE_CMD: sed --in-place --regexp-extended
     cmds:
-      - sed --in-place --regexp-extended 's/^version\s?=.*/version = "{{.TAG}}"/' {{.ROOT_DIR}}/pyproject.toml
       - cmd: >-
-          sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/' {{.ROOT_DIR}}/galaxy.yml
-      - "git-cliff --prepend CHANGELOG.md --unreleased --tag {{.TAG}}"
+          sed --in-place --regexp-extended 's/^version\s?=.*/version = "v{{.TAG}}"/'
+          {{.ROOT_DIR}}/pyproject.toml
+      - cmd: >-
+          sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/'
+          {{.ROOT_DIR}}/galaxy.yml
+      - "git-cliff --prepend CHANGELOG.md --unreleased --tag v{{.TAG}}"
 
   install:*:
     desc: |
