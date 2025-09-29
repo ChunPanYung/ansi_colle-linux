@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2025-09-29
+
+### 🚀 Features
+
+- Update to use uv.
+- Update version when updating changelog.
+- Specify shell script using tab indentation.
+- [**breaking**] Remove editorconfig file.
+- [**breaking**] Refactor packges into its own file, install espanso for fedora.
+- Install both lsd and bat.
+- Install required collection.
+- [**breaking**] Remove unused file.
+- [**breaking**] Remove fish role.
+- [**breaking**] Remove deprecated role.
+- Bootstrap file.
+
+### 🐛 Bug Fixes
+
+- Install first before building.
+- Task name.
+- Regex error on `pnpm` role.
+- Missing field on `pnpm` role.
+
+### 🚜 Refactor
+
+- Simplify task file.
+
+### 📚 Documentation
+
+- Change platform to `debian`.
+- Ignore `uv.lock`, use pre-commit.
+- `antsibull-docs` dependencies.
+- Add `validate-pyproject` to `pyproject.toml`.
+
+### 🎨 Styling
+
+- No longer need nvim config as it now properly see ansible file.
+- Rename task.
+- Task name.
+
 ## [2.1.0] - 2025-06-08
 
 ### 🚀 Features

@@ -1,5 +1,10 @@
 ---
-- name: Install packages from repository
+- name: Install uv package and project manager
+  become: true
+  ansible.builtin.dnf:
+    name: uv
+
+- name: Install packages from third-party repository
   become: true
   block:
     - name: Install dnf-plugins-core, required by community.general.copr
@@ -10,6 +15,16 @@
       community.general.copr:
         name: 'atim/lazygit'
 
-    - name: Install utilities
+    - name: Install lazygit
       ansible.builtin.dnf:
         name: lazygit
+
+    - name: Enable espanso repository
+      community.general.copr:
+        name: 'eclipseo/espanso'
+
+    - name: Install espanso on wayland environment
+      ansible.builtin.dnf:
+        name:
+          - espanso
+          - espanso-wayland

@@ -1,5 +1,12 @@
 ---
 # linux -> dev_tools/tasks/
+- name: Install packages with same name across OS
+  become: true
+  ansible.builtin.package:
+    name:
+      - lsd
+      - bat
+
 - name: Import tasks if it is Debian based system
   ansible.builtin.import_tasks: _debian.yml
   when: ansible_os_family == 'Debian'

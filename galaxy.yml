@@ -2,12 +2,12 @@
 ### REQUIRED
 namespace: ansi_colle
 name: linux
-version: 1.4.2
+version: "2.2.0"
 readme: README.md
 authors:
   - Chun Pan Yung <31672021+ChunPanYung@users.noreply.github.com>
 
-repository: http://example.com/repository
+repository: https://github.com/ChunPanYung/ansi_colle-linux.git
 
 description: your collection description
 license:

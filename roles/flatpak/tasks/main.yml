@@ -18,8 +18,8 @@
   become: false
   community.general.flatpak:
     name: org.gtk.Gtk3theme.Adwaita-dark
-  register: _output
-  changed_when: "'Skipping: ' not in _output.stderr"  # No idempotent on Ansible
+  register: flatpak_out
+  changed_when: "'Skipping: ' not in flatpak_out.stderr"  # No idempotent on Ansible
 
 - name: Install flatpak package
   become: false

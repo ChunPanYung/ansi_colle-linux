@@ -8,55 +8,57 @@ vars:
 tasks:
   changelog:*:
     desc: |
-      Create or append to CHANGELOG.md, need tag version.
-      TAG -> Create a git tag, ex: v1.0.1.
+      Create or append to CHANGELOG.md, and tag current commit.
+      TAG -> ex: '1.0.1' will create 'v1.0.1'.
+      It will also update versioning file.
     vars:
       TAG: "{{index .MATCH 0}}"
+      REPLACE_CMD: sed --in-place --regexp-extended
     cmds:
-      - "git-cliff --prepend CHANGELOG.md --unreleased --tag {{.TAG}}"
+      - cmd: >-
+          sed --in-place --regexp-extended 's/^version\s?=.*/version = "v{{.TAG}}"/'
+          {{.ROOT_DIR}}/pyproject.toml
+      - cmd: >-
+          sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/'
+          {{.ROOT_DIR}}/galaxy.yml
+      - "git-cliff --prepend CHANGELOG.md --unreleased --tag v{{.TAG}}"
 
-  playbook:*:
+  install:*:
     desc: |
-      Run this plabyook:
-      INVENTORY -> inventory file path, default is localhost.
-      TAGS -> Select only role with specific tag, you can view them from site.yml file.
+      Install this collection and requirement.
+      Param_1 -> Specify git branch or tag, default is main.
     vars:
-      INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
-      TAGS: '{{index .MATCH 0 | default "all"}}'
+      BRANCH: '{{index .MATCH 0 | default "main"}}'
+      REPO_URL: git+https://github.com/ChunPanYung/ansi_colle-linux.git
     cmds:
+      - ansible-galaxy collection install --upgrade --requirements-file {{.ROOT_DIR}}/requirements.yml
+      - ansible-galaxy collection install --force {{.REPO_URL}},{{.BRANCH}}
+
+  install:local:
+    desc: Locally install current working directory.
+    cmds:
+      - ansible-galaxy collection install --upgrade --requirements-file {{.ROOT_DIR}}/requirements.yml
+      - ansible-galaxy collection install --force {{.ROOT_DIR}}
+
+  run:local:*:
+    desc: Build and run working directory, then execute this branch with tags specified.
+    vars:
+      TAGS: '{{index .MATCH 0 | default "all"}}'
+      INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
+    cmds:
+      - task: install:local
       - cmd: >-
           ansible-playbook ansi_colle.linux.site --ask-become-pass
           --inventory {{.INVENTORY}} --tags {{.TAGS}}
-  install:
-    desc: |
-      Install this collection and requirement.
-      BRANCH -> Specify git branch or tag, default is main.
-    vars:
-      BRANCH: '{{.BRANCH | default "main"}}'
-    cmds:
-      - "ansible-galaxy collection install --upgrade community.general"
-      - "ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.BRANCH}}"
-
-  local:build:
-    desc: Locally install current working branch, then execute this branch
-    cmds:
-      - ansible-galaxy collection install --force {{.ROOT_DIR}}
-
-  local:run:*:
-    desc: Build and run working branch, then execute this branch with tags specified.
-    vars:
-      TAGS: '{{index .MATCH 0 | default "all"}}'
-    cmds:
-      - task: local:build
-      - task: playbook:{{.TAGS}}
 
   build:docs:
-    desc: Create documentation using `antsibull-docs`.
+    desc: Install current repo locally and create documentation using `antsibull-docs`.
     dir: "{{.ROOT_DIR}}"
     vars:
       DIST_DOCS: "{{.ROOT_DIR}}/dist/docs"
       COLLECTION_NAME: ansi_colle.linux
     cmds:
+      - task: install:local
       - mkdir --parent {{.DIST_DOCS}}
       - antsibull-docs sphinx-init --use-current --squash-hierarchy --dest-dir {{.DIST_DOCS}} {{.COLLECTION_NAME}}
       - pip install --requirement {{.ROOT_DIR}}/dist/docs/requirements.txt

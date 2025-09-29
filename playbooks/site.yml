@@ -24,7 +24,5 @@
       tags: cargo
     - role: ansi_colle.linux.golang
       tags: golang
-    - role: ansi_colle.linux.fish
-      tags: fish
     - role: ansi_colle.linux.lazyvim
       tags: lazyvim
