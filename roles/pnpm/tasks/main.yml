@@ -25,7 +25,6 @@
 - name: Setup .npmrc on user directory
   community.general.ini_file:
     path: "{{ ansible_user_dir }}/.npmrc"
-    create: true
     option: prefix
     value: "{{ ansible_user_dir }}/.local"
     no_extra_spaces: true
