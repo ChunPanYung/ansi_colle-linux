@@ -1,7 +1,16 @@
 ---
-- name: Install pnpm for non Debian based OS
+- name: Setup .npmrc on user directory
+  community.general.ini_file:
+    path: "{{ ansible_user_dir }}/.npmrc"
+    option: prefix
+    value: "{{ ansible_user_dir }}/.local"
+    no_extra_spaces: true
+    mode: '0600'
+    backup: true
+
+- name: Install pnpm for RedHat Based OS
   become: true
-  when: ansible_os_family != 'Debian'
+  when: ansible_os_family == 'RedHat'
   ansible.builtin.package:
     name: pnpm
 
@@ -13,26 +22,13 @@
       ansible.builtin.apt:
         name: npm
 
-    - name: Install pnpm via wget and configure bash
-      ansible.builtin.shell:
-        cmd: |
-          set -o pipefail
-          wget -qO- https://get.pnpm.io/install.sh |
-          ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
-      register: pnpm_shell
-      changed_when: pnpm_shell.stdout is not search("No changes to the environment")
-
-- name: Setup .npmrc on user directory
-  community.general.ini_file:
-    path: "{{ ansible_user_dir }}/.npmrc"
-    create: true
-    option: prefix
-    value: "{{ ansible_user_dir }}/.local"
-    no_extra_spaces: true
-    mode: '0600'
-    backup: true
+    - name: Install pnpm via npm
+      community.general.npm:
+        name: pnpm
+        global: true
 
 - name: Setup pnpm global directory
+  when: pnpm_run_setup
   ansible.builtin.command:
     cmd: pnpm setup
   register: pnpm_cmd

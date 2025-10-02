@@ -30,15 +30,9 @@ tasks:
     vars:
       BRANCH: '{{index .MATCH 0 | default "main"}}'
       REPO_URL: git+https://github.com/ChunPanYung/ansi_colle-linux.git
+    dir: "{{.ROOT_DIR}}"
     cmds:
-      - ansible-galaxy collection install --upgrade --requirements-file {{.ROOT_DIR}}/requirements.yml
-      - ansible-galaxy collection install --force {{.REPO_URL}},{{.BRANCH}}
-
-  install:local:
-    desc: Locally install current working directory.
-    cmds:
-      - ansible-galaxy collection install --upgrade --requirements-file {{.ROOT_DIR}}/requirements.yml
-      - ansible-galaxy collection install --force {{.ROOT_DIR}}
+      - ansible-playbook ./playbooks/install.yml --extra-vars git_branch={{.BRANCH}}
 
   run:local:*:
     desc: Build and run working directory, then execute this branch with tags specified.
@@ -46,7 +40,7 @@ tasks:
       TAGS: '{{index .MATCH 0 | default "all"}}'
       INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
     cmds:
-      - task: install:local
+      - task: "install:"
       - cmd: >-
           ansible-playbook ansi_colle.linux.site --ask-become-pass
           --inventory {{.INVENTORY}} --tags {{.TAGS}}
