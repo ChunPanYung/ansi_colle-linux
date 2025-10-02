@@ -8,13 +8,15 @@
       - luarocks
       - fd-find
 
-- name: Install neovim packages from npm
+- name: Install neovim package
   community.general.pnpm:
-    name: "{{ item }}"
+    name: neovim
     global: true
-  loop:
-    - neovim
-    - tree-sitter-cli
+
+- name: Install tree-sitter, you need to run 'pnpm approve-build -g' manually
+  community.general.pnpm:
+    name: tree-sitter-cli
+    global: true
 
 - name: Install Lazyvim dependencies
   become: true
@@ -30,3 +32,11 @@
     name:
       - python3-neovim
       - gcc-c++  # Required by nvim-treesitter
+
+- name: Install Lazyvim
+  ansible.builtin.git:
+    repo: https://github.com/LazyVim/starter.git
+    dest: "{{ ansible_user_dir }}/config/nvim"
+    depth: 1
+    update: false
+    version: main
