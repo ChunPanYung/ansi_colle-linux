@@ -1,0 +1,3 @@
+[submodule "roles/lazyvim/files"]
+	path = roles/lazyvim/files
+	url = git@github.com:ChunPanYung/lazyvim_config.git
