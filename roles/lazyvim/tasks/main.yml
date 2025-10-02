@@ -8,13 +8,16 @@
       - luarocks
       - fd-find
 
-- name: Install neovim packages from npm
+- name: Install neovim package from pnpm
   community.general.pnpm:
-    name: "{{ item }}"
+    name: neovim
     global: true
-  loop:
-    - neovim
-    - tree-sitter-cli
+
+- name: Install tree-sitter package from pnpm
+  community.general.pnpm:
+    name: tree-sitter-cli
+    global: true
+    production: true
 
 - name: Install Lazyvim dependencies
   become: true
