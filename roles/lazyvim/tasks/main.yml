@@ -8,12 +8,12 @@
       - luarocks
       - fd-find
 
-- name: Install neovim package from pnpm
+- name: Install neovim package
   community.general.pnpm:
     name: neovim
     global: true
 
-- name: Install tree-sitter package from pnpm
+- name: Install tree-sitter, you need to run 'pnpm approve-build -g' manually
   community.general.pnpm:
     name: tree-sitter-cli
     global: true
