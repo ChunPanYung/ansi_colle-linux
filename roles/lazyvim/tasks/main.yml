@@ -17,7 +17,6 @@
   community.general.pnpm:
     name: tree-sitter-cli
     global: true
-    production: true
 
 - name: Install Lazyvim dependencies
   become: true
