@@ -1,0 +1,18 @@
+---
+argument_specs:
+  main:
+    short_description: Install and configure pnpm.
+    description:
+      - Main entry point for pnpm role.
+      - Optionally setup pnpm home and path by default.
+      - Install bash-language-server.
+    author:
+      - Chun Pan Yung
+    options:
+      pnpm_run_setup:
+        type: "bool"
+        required: false
+        default: true
+        description:
+          - True by default.
+          - It will setup PNPM_HOME and add PNPM_HOME to PATH.
