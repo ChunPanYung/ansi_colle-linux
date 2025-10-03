@@ -16,12 +16,12 @@ tasks:
       REPLACE_CMD: sed --in-place --regexp-extended
     cmds:
       - cmd: >-
-          sed --in-place --regexp-extended 's/^version\s?=.*/version = "v{{.TAG}}"/'
-          {{.ROOT_DIR}}/pyproject.toml
+          uv version {{.TAG }}
       - cmd: >-
           sed --in-place --regexp-extended 's/version:.*/version: "{{.TAG}}"/'
           {{.ROOT_DIR}}/galaxy.yml
-      - "git-cliff --prepend CHANGELOG.md --unreleased --tag v{{.TAG}}"
+      - cmd: >-
+          git-cliff --prepend CHANGELOG.md --unreleased --tag v{{.TAG}}
 
   install:*:
     desc: |
