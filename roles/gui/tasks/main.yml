@@ -5,13 +5,6 @@
   ansible.builtin.fail:
     msg: this role can only run when OS has desktop environment installed.
 
-- name: Install packages with same name across OS
-  become: true
-  ansible.builtin.package:
-    name:
-      - lsd
-      - bat
-
 - name: Import tasks if it is Debian based system
   ansible.builtin.import_tasks: _debian.yml
   when: ansible_os_family == 'Debian'
