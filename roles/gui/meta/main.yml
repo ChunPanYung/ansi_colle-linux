@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Chun Pan Yung
-  description: System configuration, install frequent used packages.
+  description: Install packages only with GUI desktop environment.
   license: GPL-2.0-or-later
 
   min_ansible_version: "2.11"

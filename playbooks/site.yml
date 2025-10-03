@@ -18,8 +18,8 @@
       tags: ansible
     - role: ansi_colle.linux.development
       tags: development
-    - role: ansi_colle.linux.packages
-      tags: packages
+    - role: ansi_colle.linux.gui
+      tags: gui
     - role: ansi_colle.linux.cargo
       tags: cargo
     - role: ansi_colle.linux.golang
