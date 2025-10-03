@@ -13,10 +13,10 @@
     name: neovim
     global: true
 
-- name: Install tree-sitter, you need to run 'pnpm approve-build -g' manually
-  community.general.pnpm:
+- name: Install tree-sitter using OS package manager
+  become: true
+  ansible.builtin.package:
     name: tree-sitter-cli
-    global: true
 
 - name: Install Lazyvim dependencies
   become: true
