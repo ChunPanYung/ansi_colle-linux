@@ -1,5 +1,10 @@
 ---
 # linux -> dev_tools/tasks/
+- name: Fail role if server does not have desktop environment Installed
+  when: ansible_env.XDG_CURRENT_DESKTOP is not defined
+  ansible.builtin.fail:
+    msg: this role can only run when OS has desktop environment installed.
+
 - name: Install packages with same name across OS
   become: true
   ansible.builtin.package:
