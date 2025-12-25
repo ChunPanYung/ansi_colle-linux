@@ -61,9 +61,3 @@
       - group: KTextEditor Renderer
         key: Word Wrap Marker
         value: true
-      - group:
-        key:
-        value:
-      - group:
-        key:
-        value:
