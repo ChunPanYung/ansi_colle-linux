@@ -24,7 +24,7 @@
 
 - name: Configure Dolpin file manager
   community.general.kdeconfig:
-    path: "{{ ansible_user_dir }}/.config/dolpinrc"
+    path: "{{ ansible_user_dir }}/.config/dolphinrc"
     mode: '0644'
     backup: true
     values:
