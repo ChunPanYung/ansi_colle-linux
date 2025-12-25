@@ -1,0 +1,69 @@
+---
+# tasks file for kde
+- name: Fail if current desktop environment is not KDE
+  when: ansible_env.XDG_CURRENT_DESKTOP == 'KDE'
+  ansible.builtin.fail:
+    msg: Cannot find 'KDE' in `XDG_CURRNET_DESKTOP` variable.
+
+- name: Configure KDE global file
+  community.general.kdeconfig:
+    path: "{{ ansible_user_dir }}/.config/kdeglobals"
+    mode: '0644'
+    backup: true
+    values:
+      - group: KDE
+        key: SingleClick
+        bool_value: true
+      - group: KDE
+        key: LookAndFeelPackage
+        value: org.kde.breezedark.desktop
+
+- name: Configure Dolpin file manager
+  community.general.kdeconfig:
+    path: "{{ ansible_user_dir }}/.config/dolpinrc"
+    mode: '0644'
+    backup: true
+    values:
+      - group: FoldersPanel
+        key: HiddenFilesShown
+        bool_value: true
+
+- name: Configure Konsole terminal
+  community.general.kdeconfig:
+    path: "{{ ansible_user_dir }}/.config/konsolerc"
+    mode: '0644'
+    backup: true
+    values:
+      - group: MainWindow
+        key: MenuBar
+        value: Disabled
+      - group: MainWindow
+        key: ToolButtonStyle
+        value: IconOnly
+
+      - group: Toolbar mainToolBar
+        key: ToolButtonStyle
+        value: IconOnly
+
+      - group: TabBar
+        key: TabBarVisibility
+        value: AlwaysShowTabBar
+
+- name: Configure Kate Text Editor
+  community.general.kdeconfig:
+    path: "{{ ansible_user_dir }}/.config/katerc"
+    mode: '0644'
+    backup: true
+    values:
+      - group: KTextEditor Document
+        key: Show Spaces
+        value: 1
+      - group: KTextEditor Renderer
+        key: Word Wrap Marker
+        value: true
+      - group:
+        key:
+        value:
+      - group:
+        key:
+        value:
