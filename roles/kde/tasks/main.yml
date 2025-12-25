@@ -1,7 +1,7 @@
 ---
 # tasks file for kde
 - name: Fail if current desktop environment is not KDE
-  when: ansible_env.XDG_CURRENT_DESKTOP == 'KDE'
+  when: ansible_env.XDG_CURRENT_DESKTOP != 'KDE'
   ansible.builtin.fail:
     msg: Cannot find 'KDE' in `XDG_CURRNET_DESKTOP` variable.
 
