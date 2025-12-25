@@ -18,6 +18,10 @@
         key: LookAndFeelPackage
         value: org.kde.breezedark.desktop
 
+      - group: KFileDialog Settings
+        key: Show hidden files
+        bool_value: true
+
 - name: Configure Dolpin file manager
   community.general.kdeconfig:
     path: "{{ ansible_user_dir }}/.config/dolpinrc"
@@ -27,6 +31,9 @@
       - group: FoldersPanel
         key: HiddenFilesShown
         bool_value: true
+      - group: General  # Remeber display style for each folder
+        key: GlobalViewProps
+        bool_value: false
 
 - name: Configure Konsole terminal
   community.general.kdeconfig:
