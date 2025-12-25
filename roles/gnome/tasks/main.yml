@@ -8,7 +8,7 @@
 - name: Configure nautilus to use single click to open items
   community.general.dconf:
     key: /org/gnome/nautilus/preferences/click-policy
-    value: single
+    value: "'single'"
 
 - name: Configure gnome text editor
   community.general.dconf:
