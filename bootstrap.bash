@@ -15,6 +15,8 @@ function redhat {
 		firewall-cmd --permanent --add-service=ssh
 		firewall-cmd --reload
 	fi
+
+	dnf install --assumeyes python3-psutil # for community.general.dconf
 }
 
 # Check sudo -- if not sudo, ask user to become sudo

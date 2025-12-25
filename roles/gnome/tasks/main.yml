@@ -1,0 +1,22 @@
+---
+# tasks file for gnome
+- name: Configure gnome to use dark theme by default
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/color-scheme
+    value: "'prefer-dark'"
+
+- name: Configure nautilus to use single click to open items
+  community.general.dconf:
+    key: /org/gnome/nautilus/preferences/click-policy
+    value: "'single'"
+
+- name: Configure gnome text editor
+  community.general.dconf:
+    key: "/org/gnome/TextEditor/{{ item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: 'highlight-current-line', value: 'true' }
+    - { key: 'indent-style', value: "'space'" }
+    - { key: 'show-line-numbers', value: 'true' }
+    - { key: 'show-right-margin', value: 'true' }
+    - { key: 'tab-width', value: 'uint32 2' }
