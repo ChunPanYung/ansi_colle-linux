@@ -26,3 +26,8 @@
       tags: golang
     - role: ansi_colle.linux.lazyvim
       tags: lazyvim
+
+    - role: ansi_colle.linux.gnome
+      tags:
+        - gnome
+        - never
