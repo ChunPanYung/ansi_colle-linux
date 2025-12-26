@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2025-12-25
+
+### 🚀 Features
+
+- Install lazyvim (#52)
+- `gnome` role (#53)
+- [**breaking**] Remove `wsl` role
+- `kde` role
+
+### 🐛 Bug Fixes
+
+- Update `pnpm` role for more idempotency and flexible install. (#51)
+
 ## [2.2.0] - 2025-09-29
 
 ### 🚀 Features

@@ -1,6 +1,6 @@
 [project]
 name = "ansi-colle-linux"
-version = "v2.2.0"
+version = "v2.3.0"
 
 description = "Add your description here"
 readme = "README.md"
