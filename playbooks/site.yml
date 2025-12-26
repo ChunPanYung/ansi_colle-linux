@@ -31,3 +31,7 @@
       tags:
         - gnome
         - never
+    - role: ansi_colle.linux.kde
+      tags:
+        - kde
+        - never

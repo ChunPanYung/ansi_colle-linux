@@ -1,5 +1,10 @@
 ---
 # tasks file for gnome
+- name: Fail if current desktop environment is not GNOME
+  when: ansible_env.XDG_CURRENT_DESKTOP != 'GNOME'
+  ansible.builtin.fail:
+    msg: Cannot find 'GNOME' in `XDG_CURRNET_DESKTOP` variable.
+
 - name: Configure gnome to use dark theme by default
   community.general.dconf:
     key: /org/gnome/desktop/interface/color-scheme
