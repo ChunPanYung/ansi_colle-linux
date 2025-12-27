@@ -3,8 +3,10 @@
 - name: Copy tmpdir configuration file
   become: true
   ansible.builtin.copy:
-    src: tmpdirs.conf
-    dest: /etc/tmpfiles.d/
+    content: |
+      # create /tmp/RAM directory
+      D /tmp/RAM 1777 root root 4h -
+    dest: /etc/tmpfiles.d/tmpdirs.conf
     owner: root
     group: root
     mode: '0644'
@@ -29,3 +31,12 @@
     path: "{{ ansible_user_dir }}/.config/systemd/user/"
     state: directory
     mode: '0750'
+
+- name: Setup RAM variable
+  ansible.builtin.lineinfile:
+    create: true
+    backup: true
+    mode: '0644'
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^export RAM='
+    line: export RAM="/tmp/RAM"
