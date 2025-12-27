@@ -15,4 +15,5 @@ galaxy_info:
         - all
 
   galaxy_tags: []
-dependencies: []
+dependencies:
+  - ansi_colle.linux.pnpm
