@@ -1,7 +1,0 @@
-# SPDX-License-Identifier: MIT-0
----
-# handlers file for golang
-- name: Change GOPATH
-  ansible.builtin.command:
-    cmd: go env -w GOPATH=$HOME/.go
-  changed_when: true

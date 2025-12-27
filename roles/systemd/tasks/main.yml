@@ -3,11 +3,12 @@
 - name: Copy tmpdir configuration file
   become: true
   ansible.builtin.copy:
-    src: tmpdirs.conf
-    dest: /etc/tmpfiles.d/
-    owner: root
-    group: root
+    content: |
+      # create /tmp/RAM directory
+      D /tmp/RAM 1777 root root 4h -
+    dest: /etc/tmpfiles.d/tmpdirs.conf
     mode: '0644'
+    backup: true
 
 - name: Configure journal.conf
   become: true
@@ -20,12 +21,24 @@
 
     - name: Change systemd journal max size
       ansible.builtin.copy:
-        src: override.conf
-        dest: /etc/systemd/journald.conf.d/
+        content: |
+          [Journal]
+          SystemMaxFileSize=8M
+        dest: /etc/systemd/journald.conf.d/override.conf
         mode: '0644'
+        backup: true
 
 - name: Create directory for local systemd
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/systemd/user/"
     state: directory
     mode: '0750'
+
+- name: Setup RAM variable
+  ansible.builtin.lineinfile:
+    create: true
+    backup: true
+    mode: '0644'
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^export RAM='
+    line: export RAM="/tmp/RAM"

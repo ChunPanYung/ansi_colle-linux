@@ -36,6 +36,17 @@
       DOCKER_HOST="$(podman info --format '{{ '{{' }}.Host.RemoteSocket.Path{{ '}}' }}')"
       && export DOCKER_HOST
 
+- name: Install git-cliff via pnpm
+  community.general.pnpm:
+    name: git-cliff
+    global: true
+
+- name: Install git-cliff via pnpm
+  community.general.pnpm:
+    name: "@go-task/cli"
+    global: true
+  notify: Setup completion for task
+
 - name: Import tasks if it is RedHat based system
   ansible.builtin.import_tasks: _fedora.yml
   when: ansible_os_family == 'RedHat'
