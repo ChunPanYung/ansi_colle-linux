@@ -10,6 +10,7 @@
     owner: root
     group: root
     mode: '0644'
+    backup: true
 
 - name: Configure journal.conf
   become: true
@@ -22,9 +23,12 @@
 
     - name: Change systemd journal max size
       ansible.builtin.copy:
-        src: override.conf
-        dest: /etc/systemd/journald.conf.d/
+        content: |
+          [Journal]
+          SystemMaxFileSize=8M
+        dest: /etc/systemd/journald.conf.d/override.conf
         mode: '0644'
+        backup: true
 
 - name: Create directory for local systemd
   ansible.builtin.file:
