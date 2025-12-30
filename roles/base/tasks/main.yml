@@ -1,11 +1,11 @@
 ---
 # tasks file for base
 - name: Install shell script analysis tool
-- name: Setup shellcheckrc file
   become: true
   ansible.builtin.package:
     name: shellcheck
 
+- name: Setup shellcheckrc file
   ansible.builtin.copy:
     content: |
       # Disable following constant source

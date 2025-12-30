@@ -1,5 +1,5 @@
 ---
-- name: Install utilities for all alpine, RedHat, and Debian distro
+- name: Install git
   become: true
   ansible.builtin.package:
     name: git
