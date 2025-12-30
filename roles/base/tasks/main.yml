@@ -29,12 +29,6 @@
       # can't use it directly with compopt
       complete -o nospace -F _longopt source
 
-- name: Create $HOME/.local/state for XDG_STATE_HOME
-  ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/state"
-    state: directory
-    mode: '0755'
-
 - name: Create directory for binary, exeuctables, and scripts
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.local/bin/"
