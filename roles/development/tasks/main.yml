@@ -45,6 +45,16 @@
     global: true
   notify: Setup completion for task
 
+- name: Install common GUI application
+  when:
+    - ansible_env.XDG_CURRENT_DESKTOP is defined
+    - ansible_env.XDG_CURRENT_DESKTOP | length > 0
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop:
+    - keepassxc
+
 - name: Import tasks if it is RedHat based system
   ansible.builtin.import_tasks: _fedora.yml
   when: ansible_os_family == 'RedHat'
