@@ -14,8 +14,6 @@
       tags: flatpak
     - role: ansi_colle.linux.systemd
       tags: systemd
-    - role: ansi_colle.linux.ansible
-      tags: ansible
     - role: ansi_colle.linux.development
       tags: development
     - role: ansi_colle.linux.packages

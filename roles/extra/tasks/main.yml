@@ -42,3 +42,8 @@
     path: "{{ ansible_user_dir }}/.bashrc"
     regexp: '^export RAM='
     line: export RAM="/tmp/RAM"
+
+- name: Install Android File Transfer
+  become: true
+  ansible.builtin.package:
+    name: android-file-transfer

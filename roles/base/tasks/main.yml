@@ -43,3 +43,16 @@
     dest: "{{ ansible_user_dir }}/.inputrc"
     mode: '0644'
     backup: true
+
+- name: Enabled sshd service on startup
+  ansible.builtin.service:
+    name: sshd
+    enabled: true
+    state: started
+
+- name: Install packages with same name across OS
+  become: true
+  ansible.builtin.package:
+    name:
+      - lsd
+      - bat
