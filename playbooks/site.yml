@@ -8,8 +8,8 @@
   roles:
     - role: ansi_colle.linux.pnpm
       tags: pnpm
-    - role: ansi_colle.linux.home
-      tags: home
+    - role: ansi_colle.linux.base
+      tags: base
     - role: ansi_colle.linux.flatpak
       tags: flatpak
     - role: ansi_colle.linux.systemd
