@@ -57,4 +57,3 @@
     name: "{{ item }}"
   loop:
     - keepassxc
-    - transmission-qt

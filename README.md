@@ -2,7 +2,7 @@ ansi_colle.linux
 ==========
 
 Collection of roles and plugins for personal use.
-Mainly for setting up Linux OS.
+Target for Fedora and Debian OS, other distros is not supported.
 
 Requirements
 ------------
