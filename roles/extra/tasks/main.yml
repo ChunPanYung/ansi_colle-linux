@@ -47,3 +47,14 @@
   become: true
   ansible.builtin.package:
     name: android-file-transfer
+
+- name: Install common GUI application
+  when:
+    - ansible_env.XDG_CURRENT_DESKTOP is defined
+    - ansible_env.XDG_CURRENT_DESKTOP | length > 0
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop:
+    - keepassxc
+    - transmission-qt
