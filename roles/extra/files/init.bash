@@ -28,6 +28,6 @@ bash_add_path ~/.local/bin
 
 # Execute all *.bash files under directory
 BASHRC_D=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
-rc_all_bash "${BASHRC_D}/alias.d"
+rc_all_bash "${BASHRC_D}/env.d"
 rc_all_bash "${BASHRC_D}/function.d"
 rc_all_bash "${BASHRC_D}/conf.d"

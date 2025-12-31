@@ -75,7 +75,7 @@
         mode: '0754'
       loop:
         - "{{ extra_bashrc_d }}"
-        - "{{ extra_bashrc_d }}/alias.d"
+        - "{{ extra_bashrc_d }}/env.d"
         - "{{ extra_bashrc_d }}/function.d"
         - "{{ extra_bashrc_d }}/conf.d"
 
