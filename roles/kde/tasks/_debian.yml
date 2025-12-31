@@ -8,10 +8,6 @@
 
 - name: Setup KDE Connect
   block:
-    - name: Install ufw
-      ansible.builtin.apt:
-        name: ufw
-
     - name: Allow ports used by KDE Connect
       community.general.ufw:
         rule: allow

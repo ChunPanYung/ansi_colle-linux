@@ -5,7 +5,7 @@ function debian {
 	export DEBIAN_FRONTEND=noninteractive
 	apt install --yes openssh-server ansible
 	systemctl enable --now ssh
-	command -v ufw && ufw allow ssh
+	command -v ufw && ufw allow OpenSSH
 }
 
 function redhat {
