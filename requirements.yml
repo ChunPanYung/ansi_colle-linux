@@ -3,7 +3,3 @@
 collections:
   - name: community.general
     version: "*"
-
-  - name: https://github.com/ChunPanYung/ansi_colle-mods.git
-    type: git
-    version: main
