@@ -62,3 +62,11 @@
   become: true
   ansible.builtin.apt:
     name: ufw
+
+- name: Install oh-my-posh if ~/.local/bin/oh-my-posh does not exist
+  notify: Configure oh-my-post to start on interactive session
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      curl -s https://ohmyposh.dev/install.sh | bash -s
+    creates: "{{ ansible_user_dir }}/.local/bin/oh-my-posh"
