@@ -3,13 +3,13 @@
 # Install ansible & Enable ssh on Fedora and Debian based system
 function setup-debian {
 	export DEBIAN_FRONTEND=noninteractive
-	apt install --yes openssh-server ansible
+	apt install --yes openssh-server ansible-core
 	systemctl enable --now ssh
 	command -v ufw && ufw allow OpenSSH
 }
 
 function setup-fedora {
-	dnf install --assumeyes openssh-server ansible
+	dnf install --assumeyes openssh-server ansible-core
 	systemctl enable --now sshd
 	if command -v firewall-cmd &>/dev/null; then
 		firewall-cmd --permanent --add-service=ssh
