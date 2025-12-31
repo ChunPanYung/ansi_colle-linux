@@ -1,13 +1,4 @@
 ---
-# - name: Setup .npmrc on user directory
-#   community.general.ini_file:
-#     path: "{{ ansible_user_dir }}/.npmrc"
-#     option: prefix
-#     value: "{{ ansible_user_dir }}/.local"
-#     no_extra_spaces: true
-#     mode: '0600'
-#     backup: true
-
 - name: Install pnpm for RedHat Based OS
   become: true
   when: ansible_os_family == 'RedHat'
