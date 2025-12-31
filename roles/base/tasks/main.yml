@@ -70,3 +70,42 @@
       set -o pipefail
       curl -s https://ohmyposh.dev/install.sh | bash -s
     creates: "{{ ansible_user_dir }}/.local/bin/oh-my-posh"
+
+- name: Check if ble.sh file exist
+  ansible.builtin.stat:
+    path: "{{ansible_user_dir }}/.local/share/blesh/ble.sh"
+  register: base_blesh_st
+
+- name: Install ble.sh
+  when:
+    - base_blesh_st.stat.exist is defined
+    - base_blesh_st.stat.exist
+  block:
+    - name: Create temp directory
+      ansible.builtin.tempfile:
+        state: directory
+      register: base_tmp_dir
+
+    - name: Clone git repository to previous temp directory
+      ansible.builtin.git:
+        repo: https://github.com/akinomyoga/ble.sh.git
+        dest: "{{ base_tmp_dir.path }}"
+        single_branch: true
+        depth: 1
+        version: master
+        track_submodules: true
+      register: base_tmp_dir
+
+    - name: Install ble.sh
+      notify: Configure ble.sh to start on interactive session
+      ansible.builtin.command:
+        cmd: "make -C ble.sh install PREFIX={{ ansible_user_dir }}/.local"
+      args:
+        creates: "{{ base_blesh_st.path }}"
+        chdir: "{{ base_tmp_dir.git_dir_now }}"
+
+    - name: Remove temp directory
+      ansible.builtin.file:
+        path: "{{ base_tmp_dir.path }}"
+        state: absent
+      when: base_tmp_dir.path is defined
