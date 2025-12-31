@@ -76,7 +76,7 @@
 
 - name: Check if ble.sh file exist
   ansible.builtin.stat:
-    path: "{{ansible_user_dir }}/.local/share/blesh/ble.sh"
+    path: "{{ ansible_user_dir }}/.local/share/blesh/ble.sh"
   register: base_blesh_st
 
 - name: Install ble.sh

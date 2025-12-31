@@ -61,12 +61,26 @@
 - name: Setup bashrc.d directory
   vars:
     extra_bashrc_d: "{{ ansible_user_dir }}/.bashrc.d"
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-  loop:
-    - "{{ extra_bashrc_d }}"
-    - "{{ extra_bashrc_d }}/alias.d"
-    - "{{ extra_bashrc_d }}/function.d"
-    - "{{ extra_bashrc_d }}/conf.d"
+  block:
+    - name: Source init.bash file on Debian
+      when: ansible_os_family == 'Debian'
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_user_dir }}/.bashrc"
+        line: "source -- ~/.bashrc.d/init.bash"
+
+    - name: Create all directory for bashrc.d
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0754'
+      loop:
+        - "{{ extra_bashrc_d }}"
+        - "{{ extra_bashrc_d }}/alias.d"
+        - "{{ extra_bashrc_d }}/function.d"
+        - "{{ extra_bashrc_d }}/conf.d"
+
+    - name: Copy file into .bashrc.d directory
+      ansible.builtin.copy:
+        src: init.bash
+        dest: "{{ extra_bashrc_d }}/"
+        mode: '0643'

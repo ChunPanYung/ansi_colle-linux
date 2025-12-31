@@ -12,12 +12,10 @@
       tags: base
     - role: ansi_colle.linux.flatpak
       tags: flatpak
-    - role: ansi_colle.linux.systemd
-      tags: systemd
     - role: ansi_colle.linux.development
       tags: development
-    - role: ansi_colle.linux.packages
-      tags: packages
+    - role: ansi_colle.linux.extra
+      tags: extra
     - role: ansi_colle.linux.lazyvim
       tags: lazyvim
 
