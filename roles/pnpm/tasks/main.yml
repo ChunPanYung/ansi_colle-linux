@@ -11,7 +11,7 @@
 - name: Install pnpm for RedHat Based OS
   become: true
   when: ansible_os_family == 'RedHat'
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: pnpm
 
 - name: Install pnpm on Deiban
