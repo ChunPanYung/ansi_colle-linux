@@ -10,7 +10,7 @@
     content: |
       # Disable following constant source
       disable=SC1090
-    dest: "{{ ansible_user_dir }}/.config/shellcheck"
+    dest: "{{ ansible_user_dir }}/.config/shellcheckrc"
     mode: '0644'
     backup: true
 
