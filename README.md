@@ -12,8 +12,10 @@ Requirements
 To run this playbook from `bash`:
 
 ```bash
-# yaml output format instead of json
-export ANSIBLE_CALLBACK_RESULT_FORMAT=yaml
+ansible-galaxy collection install community.general --upgrade
+
+export ANSIBLE_CALLBACK_RESULT_FORMAT=yaml  # yaml output format instead of json
+export ANSIBLE_VERBOSITY=1  # Set verbosity, default is 0
 
 ansible-galaxy collection install \
   git+https://github.com/ChunPanYung/ansi_colle-linux.git
