@@ -33,10 +33,12 @@
       - python3-neovim
       - gcc-c++  # Required by nvim-treesitter
 
-- name: Install Lazyvim
-  ansible.builtin.git:
-    repo: https://github.com/LazyVim/starter.git
-    dest: "{{ ansible_user_dir }}/.config/nvim"
-    depth: 1
-    update: false
-    version: main
+- name: Create directory for lazyvim
+  vars:
+    layzvim_dest: "{{ ansible_user_dir }}/.config/nvim"
+  notify: Install Lazyvim
+  ansible.builtin.file:
+    path: "{{ layzvim_dest }}"
+    state: directory
+    mode: '0755'
+

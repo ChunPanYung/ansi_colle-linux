@@ -6,17 +6,19 @@
       prompt: "BECOME password"
 
   roles:
-    - role: ansi_colle.linux.pnpm
-      tags: pnpm
     - role: ansi_colle.linux.base
       tags: base
     - role: ansi_colle.linux.development
       tags: development
-    - role: ansi_colle.linux.extra
-      tags: extra
+    - role: ansi_colle.linux.pnpm
+      tags: pnpm
     - role: ansi_colle.linux.lazyvim
       tags: lazyvim
 
+    - role: ansi_colle.linux.extra
+      tags:
+        - extra
+        - never
     - role: ansi_colle.linux.gnome
       tags:
         - gnome
