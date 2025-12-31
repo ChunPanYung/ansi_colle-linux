@@ -36,7 +36,7 @@
     backup: true
     mode: '0644'
     path: "{{ ansible_user_dir }}/.bashrc"
-    regexp: '^eval "\$\(gpg-agent'
+    regexp: '^eval "\$(gpg-agent'
     line: 'eval "$(gpg-agent --daemon &> /dev/null)" # Enable gpg-agent on startup'
 
 - name: Create gpg config file
