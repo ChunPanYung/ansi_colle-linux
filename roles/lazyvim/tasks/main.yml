@@ -36,7 +36,7 @@
 - name: Install Lazyvim
   ansible.builtin.git:
     repo: https://github.com/LazyVim/starter.git
-    dest: "{{ ansible_user_dir }}/config/nvim"
+    dest: "{{ ansible_user_dir }}/.config/nvim"
     depth: 1
     update: false
     version: main
