@@ -4,4 +4,4 @@
     path: "{{ ansible_user_dir }}/.bashrc"
     mode: '0644'
     backup: true
-    line: source -- ~/.local/share/blesh/ble.sh
+    line: 'eval "$(oh-my-posh init bash --config wholespace)"'
