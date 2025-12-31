@@ -29,11 +29,14 @@
       # can't use it directly with compopt
       complete -o nospace -F _longopt source
 
-- name: Create directory for binary, exeuctables, and scripts
+- name: Create directory for binary and completion
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/bin/"
+    path: "{{ item }}"
     state: directory
     mode: '0755'
+  loop:
+    - "{{ ansible_user_dir }}/.local/bin/"
+    - "{{ ansible_user_dir }}/.local/share/bash-completion/"
 
 - name: Setup 'inputrc' dot file
   ansible.builtin.copy:
