@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2026-01-01
+
+### 🚀 Features
+
+- [**breaking**] Remove language installation
+- Specify dependencies
+- Install and configure shellcheck
+- Delete unused file
+- [**breaking**] Migrate task
+- [**breaking**] Remove `package` role
+- Reload and enable `ufw` after changing setting
+- Install and configure oh-my-posh
+- Install and configure blesh
+- Create `bash-completion` dir
+- Create `bashrc.d` directory
+- [**breaking**] Remove unused file and collection
+- Bootstrap check both `ID` and `ID_LIKE`
+- Install `ansible-core` instead
+- [**breaking**] Remove `fish` package
+- Change theme on `oh-my-posh`
+- Do not put backslash on regexp
+
+### 🐛 Bug Fixes
+
+- Syntax error
+- Install lazyvim only if directory does not exist
+- Remove quotes and escape special characters
+
+### 🚜 Refactor
+
+- Install `git-cliff` and `go-task` via `pnpm`
+- [**breaking**] Rename `role` role to `base` role
+- [**breaking**] Migrate git config to `development` role
+- [**breaking**] Migrate `systemd` role to `extra` role
+- [**breaking**] Migrate task to other role
+
+### 📚 Documentation
+
+- Change to `README` file on using this repo
+
+### 🎨 Styling
+
+- Rename directory created by ansible
+
 ## [2.3.0] - 2025-12-25
 
 ### 🚀 Features
