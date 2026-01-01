@@ -41,4 +41,3 @@
     path: "{{ layzvim_dest }}"
     state: directory
     mode: '0755'
-
