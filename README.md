@@ -2,29 +2,30 @@ ansi_colle.linux
 ==========
 
 Collection of roles and plugins for personal use.
-Mainly for setting up Linux OS.
+Target for Fedora and Debian OS, other distros is not supported.
 
 Requirements
 ------------
 
-[Installing Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+1. Execute [bootstrap.bash](bootstrap.bash)
+2. Install this collection: `ansible-galaxy collection install community.general`
 
-To run this playbook from `bash`:
+3. To run this playbook from `bash`:
 
-```bash
-# yaml output format instead of json
-export ANSIBLE_CALLBACK_RESULT_FORMAT=yaml
+   ```bash
+   export ANSIBLE_CALLBACK_RESULT_FORMAT=yaml  # yaml output format
+   export ANSIBLE_VERBOSITY=1  # Set verbosity, default is 0
 
-ansible-galaxy collection install \
-  git+https://github.com/ChunPanYung/ansi_colle-linux.git
+   ansible-galaxy collection install \
+       git+https://github.com/ChunPanYung/ansi_colle-linux.git
 
-# Run this to update every time
-ansible-playbook ansi_colle.linux.install
+   # Run this to update every time
+   ansible-playbook ansi_colle.linux.install
 
-# Run this after update, it will ask you sudo password
-ansible-playbook ansi_colle.linux.site --connection=local \
-  --inventory 127.0.0.1, --verbose
-```
+   # Run this after update, it will ask you sudo password
+   ansible-playbook ansi_colle.linux.site --connection=local \
+       --inventory 127.0.0.1, --verbose
+    ```
 
 Links
 -----

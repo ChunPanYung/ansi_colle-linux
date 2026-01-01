@@ -1,0 +1,8 @@
+---
+- name: Install Lazyvim
+  ansible.builtin.git:
+    repo: https://github.com/LazyVim/starter.git
+    dest: "{{ layzvim_dest }}"
+    depth: 1
+    update: false
+    version: main

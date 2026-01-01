@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# Install ansible & Enable ssh on RedHat and Debian based system
-function debian {
+# Install ansible & Enable ssh on Fedora and Debian based system
+function setup-debian {
 	export DEBIAN_FRONTEND=noninteractive
-	apt install --yes openssh-server ansible
+	apt install --yes openssh-server ansible-core
 	systemctl enable --now ssh
-	command -v ufw && ufw allow ssh
+	command -v ufw && ufw allow OpenSSH
 }
 
-function redhat {
-	dnf install --assumeyes openssh-server ansible
+function setup-fedora {
+	dnf install --assumeyes openssh-server ansible-core
 	systemctl enable --now sshd
 	if command -v firewall-cmd &>/dev/null; then
 		firewall-cmd --permanent --add-service=ssh
@@ -25,15 +25,17 @@ if [[ "$EUID" != 0 ]]; then
 	exit 1
 fi
 
-os_name="$(grep -e '^NAME=' /etc/os-release | cut -d '=' -f2 | tr -d '\"')"
+id="$(grep -e '^ID=' /etc/os-release | cut -d '=' -f2 | tr -d '\"')"
+id_like="$(grep -e '^ID_LIKE=' /etc/os-release | cut -d '=' -f2 | tr -d '\"')"
+
 # execute following depending on OS
-case "${os_name,,}" in
+case "${id} ${id_like}" in
 *"debian"*)
 	echo "Debian"
-	debian
+	setup-debian
 	;;
 *"fedora"*)
 	echo "Fedora"
-	redhat
+	setup-fedora
 	;;
 esac

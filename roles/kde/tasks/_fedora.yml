@@ -1,0 +1,9 @@
+---
+- name: Execute tasks with sudo
+  become: true
+  block:
+    - name: Install frequent used packages
+      ansible.builtin.dnf:
+        name:
+          - elisa-player
+          - kdeconnectd

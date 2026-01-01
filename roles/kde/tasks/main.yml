@@ -5,6 +5,22 @@
   ansible.builtin.fail:
     msg: Cannot find 'KDE' in `XDG_CURRNET_DESKTOP` variable.
 
+- name: Install KDE GUI application
+  become: true
+  block:
+    - name: Install frequently used packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+      loop:
+        - kate
+        - yakuake
+        - transmission-qt
+
+    - name: Remove Kwrite
+      ansible.builtin.package:
+        name: kwrite
+        state: absent
+
 - name: Configure KDE global file
   community.general.kdeconfig:
     path: "{{ ansible_user_dir }}/.config/kdeglobals"
@@ -68,3 +84,9 @@
       - group: KTextEditor Renderer
         key: Word Wrap Marker
         value: true
+
+- name: Import task file for Fedora OS
+  ansible.builtin.import_tasks: _fedora.yml
+
+- name: Import task file for Debian OS
+  ansible.builtin.import_tasks: _debian.yml

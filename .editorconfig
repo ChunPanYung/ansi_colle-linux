@@ -8,7 +8,9 @@ trim_trailing_whitespace = true
 
 [*.md]
 trim_trailing_whitespace = false
+indent_style = space
+indent_size = 4
 
-[*.{bash,sh,fish}]
+[*.{bash,sh}]
 indent_style = tab
 tab_width = 4

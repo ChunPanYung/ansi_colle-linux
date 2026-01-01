@@ -41,7 +41,7 @@ tasks:
       INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
     cmds:
       - cmd: >-
-          ansible-playbook ansi_colle.linux.site --ask-become-pass
+          ansible-playbook ansi_colle.linux.site
           --inventory {{.INVENTORY}} --tags {{.TAGS}}
 
   build:docs:

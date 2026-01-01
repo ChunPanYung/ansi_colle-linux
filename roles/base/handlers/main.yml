@@ -1,0 +1,14 @@
+---
+- name: Configure oh-my-post to start on interactive session
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    mode: '0644'
+    backup: true
+    line: 'eval "$(oh-my-posh init bash --config clean-detailed)"'
+
+- name: Configure ble.sh to start on interactive session
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    mode: '0644'
+    backup: true
+    line: 'source -- ~/.local/share/blesh/ble.sh'

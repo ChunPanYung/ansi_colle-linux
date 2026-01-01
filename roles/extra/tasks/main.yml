@@ -1,0 +1,86 @@
+---
+# tasks file for extra
+- name: Copy tmpdir configuration file
+  become: true
+  ansible.builtin.copy:
+    content: |
+      # create /tmp/RAM directory
+      D /tmp/RAM 1777 root root 4h -
+    dest: /etc/tmpfiles.d/tmpdirs.conf
+    mode: '0644'
+    backup: true
+
+- name: Configure journal.conf
+  become: true
+  block:
+    - name: Create directory for custom journald settings
+      ansible.builtin.file:
+        name: /etc/systemd/journald.conf.d/
+        state: directory
+        mode: '0755'
+
+    - name: Change systemd journal max size
+      ansible.builtin.copy:
+        content: |
+          [Journal]
+          SystemMaxFileSize=8M
+        dest: /etc/systemd/journald.conf.d/override.conf
+        mode: '0644'
+        backup: true
+
+- name: Create directory for local systemd
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/systemd/user/"
+    state: directory
+    mode: '0750'
+
+- name: Setup RAM variable
+  ansible.builtin.lineinfile:
+    create: true
+    backup: true
+    mode: '0644'
+    path: "{{ ansible_user_dir }}/.bashrc"
+    regexp: '^export RAM='
+    line: export RAM="/tmp/RAM"
+
+- name: Install Android File Transfer
+  become: true
+  ansible.builtin.package:
+    name: android-file-transfer
+
+- name: Install common GUI application
+  when:
+    - ansible_env.XDG_CURRENT_DESKTOP is defined
+    - ansible_env.XDG_CURRENT_DESKTOP | length > 0
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop:
+    - keepassxc
+
+- name: Setup bashrc.d directory
+  vars:
+    extra_bashrc_d: "{{ ansible_user_dir }}/.bashrc.d"
+  block:
+    - name: Source init.bash file on Debian
+      when: ansible_os_family == 'Debian'
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_user_dir }}/.bashrc"
+        line: "source -- ~/.bashrc.d/init.bash"
+
+    - name: Create all directory for bashrc.d
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0754'
+      loop:
+        - "{{ extra_bashrc_d }}"
+        - "{{ extra_bashrc_d }}/env.d"
+        - "{{ extra_bashrc_d }}/function.d"
+        - "{{ extra_bashrc_d }}/conf.d"
+
+    - name: Copy file into .bashrc.d directory
+      ansible.builtin.copy:
+        src: init.bash
+        dest: "{{ extra_bashrc_d }}/"
+        mode: '0643'

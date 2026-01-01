@@ -5,16 +5,13 @@
   ansible.builtin.package:
     name:
       - fd-find
-      - fish
 
 - name: Install utilities for all alpine, RedHat, and Debian distro
   become: true
   ansible.builtin.package:
     name:
-      - shellcheck
       - shfmt
       - ripgrep
-      - git
 
 - name: Install container tools
   become: true
@@ -57,3 +54,6 @@
 
 - name: Configure GnuPG
   ansible.builtin.import_tasks: _gpg.yml
+
+- name: Configure git
+  ansible.builtin.import_tasks: _git.yml

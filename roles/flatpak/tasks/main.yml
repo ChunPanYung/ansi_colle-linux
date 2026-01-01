@@ -1,5 +1,12 @@
 ---
 # roles/flatpak/tasks
+- name: Fail if Desktop Environment variable does not exist
+  when:
+    - ansible_env.XDG_CURRENT_DESKTOP is defined
+    - ansible_env.XDG_CURRENT_DESKTOP | length > 0
+  ansible.builtin.fail:
+    msg: '$XDG_CURRENT_DESKTOP does not exist.'
+
 - name: Install flatpak & discover flatpak backend
   become: true
   ansible.builtin.apt:
