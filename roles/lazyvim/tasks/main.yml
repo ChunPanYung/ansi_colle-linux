@@ -30,7 +30,7 @@
   when: ansible_os_family == 'RedHat'
   ansible.builtin.dnf:
     name:
-      - python3-neovim
+      - python3-neovim  # equvalent to 'pynvim'
       - gcc-c++  # Required by nvim-treesitter
 
 - name: Create directory for lazyvim
