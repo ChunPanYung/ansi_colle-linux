@@ -30,7 +30,8 @@
 
 - name: Install LSP via pnpm
   community.general.pnpm:
-    name:
-      - bash-language-server
-      - typescript-language-server
+    name: "{{ item }}"
     global: true
+  loop:
+    - bash-language-server
+    - typescript-language-server
