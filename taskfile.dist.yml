@@ -40,6 +40,8 @@ tasks:
       TAGS: '{{index .MATCH 0 | default "all"}}'
       INVENTORY: '{{.INVENTORY | default "127.0.0.1, --connection=local"}}'
     cmds:
+      - cmd: ANSIBLE_CALLBACK_RESULT_FORMAT=yaml
+      - cmd: ANSIBLE_VERBOSITY=1
       - cmd: >-
           ansible-playbook ansi_colle.linux.site
           --inventory {{.INVENTORY}} --tags {{.TAGS}}
