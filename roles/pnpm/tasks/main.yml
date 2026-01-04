@@ -28,7 +28,10 @@
     - pnpm_cmd.rc != 0
     - pnpm_cmd.stdout is not search("already contains a pnpm section")
 
-- name: Install Shell LSP via pnpm
+- name: Install LSP via pnpm
   community.general.pnpm:
-    name: bash-language-server
+    name: "{{ item }}"
     global: true
+  loop:
+    - bash-language-server
+    - typescript-language-server
