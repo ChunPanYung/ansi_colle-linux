@@ -23,11 +23,13 @@ function bash_add_path {
 	unset bin_path
 }
 
+BASHRC_D=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
 # Add to 'PATH'
 bash_add_path ~/.local/bin
+bash_add_path "${BASHRC_D}/script.d"
 
 # Execute all *.bash files under directory
-BASHRC_D=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 rc_all_bash "${BASHRC_D}/env.d"
 rc_all_bash "${BASHRC_D}/function.d"
 rc_all_bash "${BASHRC_D}/conf.d"
