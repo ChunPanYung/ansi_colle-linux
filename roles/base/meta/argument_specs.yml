@@ -2,6 +2,9 @@
 argument_specs:
   main:
     short_description: Main entry point for base role
+    description:
+      - Install ble.sh, oh-my-posh, ssh, and firewall etc.
+      - Configure PATH environment variables and bashrc file.
     author:
       - Chun Pan Yung
     options: {}

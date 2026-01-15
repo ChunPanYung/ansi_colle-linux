@@ -2,6 +2,8 @@
 argument_specs:
   main:
     short_description: Main entry point for dev_tools role.
+    description:
+      - Install and configure git, gpg, and container tools.
     author:
       - Chun Pan Yung
     options: {}
