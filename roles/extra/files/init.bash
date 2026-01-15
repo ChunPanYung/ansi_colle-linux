@@ -12,6 +12,7 @@ function rc_all_bash {
 	fi
 	unset rc
 }
+export -f rc_all_bash
 
 # Append to '$PATH' if directory exists and current in not '$PATH'
 function bash_add_path {
@@ -22,6 +23,7 @@ function bash_add_path {
 	export PATH
 	unset bin_path
 }
+export -f bash_add_path
 
 BASHRC_D=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
