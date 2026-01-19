@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.0] - 2026-01-19
+
+### 🚀 Features
+
+- Install tyepscript (#58)
+- Add `script.d` path to `PATH` (#59)
+
+### 🐛 Bug Fixes
+
+- `argument_specs` files
+
+### 📚 Documentation
+
+- Add comment to explain (#57)
+
 ## [2.4.0] - 2026-01-01
 
 ### 🚀 Features
