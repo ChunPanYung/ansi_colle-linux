@@ -87,6 +87,8 @@
 
 - name: Import task file for Fedora OS
   ansible.builtin.import_tasks: _fedora.yml
+  when: ansible_facts["os_family"] == 'RedHat'
 
 - name: Import task file for Debian OS
   ansible.builtin.import_tasks: _debian.yml
+  when: ansible_facts["os_family"] == 'Debian'

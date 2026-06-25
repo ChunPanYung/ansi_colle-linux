@@ -31,3 +31,9 @@
       tags:
         - flatpak
         - never
+    - role: ansi_colle.linux.development
+      tags: development
+    - role: ansi_colle.linux.cargo
+      tags: cargo
+    - role: ansi_colle.linux.golang
+      tags: golang

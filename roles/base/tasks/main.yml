@@ -61,7 +61,7 @@
       - bat
 
 - name: Install ufw
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts["os_family"] == 'Debian'
   become: true
   ansible.builtin.apt:
     name: ufw
