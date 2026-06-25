@@ -12,7 +12,6 @@ function rc_all_bash {
 	fi
 	unset rc
 }
-export -f rc_all_bash
 
 # Append to '$PATH' if directory exists and current in not '$PATH'
 function bash_add_path {
