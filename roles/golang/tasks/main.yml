@@ -3,14 +3,14 @@
 # tasks file for golang
 - name: Install Go programming language
   become: true
-  when: ansible_os_family != 'Alpine'
+  when: ansible_facts["os_family"] != 'Alpine'
   ansible.builtin.package:
     name: golang
   notify: Change GOPATH
 
 - name: Install Go programming language for Alpine
   become: true
-  when: ansible_os_family == 'Alpine'
+  when: ansible_facts["os_family"] == 'Alpine'
   community.general.apk:
     name: golang
   notify: Change GOPATH

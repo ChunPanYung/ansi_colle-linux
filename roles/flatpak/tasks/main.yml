@@ -13,7 +13,7 @@
     name:
       - flatpak
       - plasma-discover-backend-flatpak
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts["os_family"] == 'Debian'
 
 - name: Add flathub flatpak repository remote to the user installation
   community.general.flatpak_remote:
