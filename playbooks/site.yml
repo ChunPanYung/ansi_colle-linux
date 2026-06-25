@@ -31,3 +31,9 @@
       tags:
         - flatpak
         - never
+    - role: ansi_colle.linux.ansible
+      tags: ansible
+    - role: ansi_colle.linux.development
+      tags: development
+    - role: ansi_colle.linux.cargo
+      tags: cargo
